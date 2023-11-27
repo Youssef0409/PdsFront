@@ -45,8 +45,8 @@
               "src/assets/css/owl.carousel.min.css",
               "src/assets/css/price_rangs.css",
               "src/assets/css/responsive.css"
-              
-                           
+
+
             ],
             "scripts": [
               "src/assets/js/animated.headline.js",
@@ -74,7 +74,7 @@
 
               "src/assets/js/vendor/modernizr-3.5.0.min.js",
               "src/assets/js/vendor/jquery-1.12.4.min.js"
-              
+
             ]
           },
           "configurations": {

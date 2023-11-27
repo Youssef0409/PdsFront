@@ -4,6 +4,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FindJobComponent } from './find-job/find-job.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import  {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
 
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent },
   { path: 'findJob', component: FindJobComponent },
   { path: 'jobDetails', component: JobDetailsComponent },
- 
+  { path: 'login', component: LoginComponent },
+
   // Add more routes as needed
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
   { path: '**', redirectTo: '/home' }, // Wildcard route for 404
