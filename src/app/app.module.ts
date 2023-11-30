@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Angular Material Imports
 import { MatInputModule } from '@angular/material/input';
@@ -65,7 +66,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatPaginatorModule,
     NgbModalModule, TimepickerModule.forRoot(),
+
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {

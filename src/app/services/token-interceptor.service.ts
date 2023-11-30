@@ -30,15 +30,13 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 && refreshToken) {
-          const refreshReq = req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${refreshToken}`
-            }
-          });
-
           return this.authService.refreshAccessToken().pipe(
-            switchMap((newAccessToken: string) => {
+            switchMap((response: any) => {
+              const newAccessToken = response.access_token;
+              const newRefreshToken = response.refresh_token;
+
               localStorage.setItem('access_token', newAccessToken);
+              localStorage.setItem('refresh_token', newRefreshToken);
 
               const updatedReq = req.clone({
                 setHeaders: {

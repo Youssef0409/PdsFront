@@ -27,7 +27,7 @@
 
    <body>
     <!-- Preloader Start -->
-    <div id="preloader-active">
+  <!--  <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Preloader Start -->
     <header>
         <!-- Header Start -->
@@ -73,9 +73,18 @@
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
-                                </div>
+                                    <!-- If user is not logged in -->
+                                    <ng-container *ngIf="!isLoggedIn(); else loggedInButtons">
+                                      <a routerLink="/login" class="btn head-btn1">Register</a>
+                                      <a routerLink="/login" class="btn head-btn2">Login</a>
+                                    </ng-container>
+                                  
+                                    <!-- If user is logged in -->
+                                    <ng-template #loggedInButtons>
+                                      <a routerLink="/profile" class="btn head-btn1">Dashboard</a>
+                                      <a (click)="logout()" routerLink="/login" class="btn head-btn2">Logout</a>
+                                    </ng-template>
+                                  </div>
                             </div>
                         </div>
                         <!-- Mobile Menu -->

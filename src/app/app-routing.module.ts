@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: AccueilComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'findJob', component: FindJobComponent },
-  { path: 'jobDetails', component: JobDetailsComponent },
+  { path: 'jobDetails/:id', component: JobDetailsComponent },
   { path: 'login', component: LoginComponent },
 
   // Add more routes as needed
@@ -22,7 +22,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+],
   exports: [RouterModule]
 })
 
