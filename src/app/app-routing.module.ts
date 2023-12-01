@@ -5,9 +5,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FindJobComponent } from './find-job/find-job.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import  {LoginComponent} from "./login/login.component";
+import { HomeComponent } from './home/home.component';
+import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.component';
 
 const routes: Routes = [
 
+  { path: 'demande-offre', component: DemandeOffreComponent },
+  { path: 'test', component: HomeComponent },
   { path: 'home', component: AccueilComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'findJob', component: FindJobComponent },

@@ -29,7 +29,7 @@ export class DemandeRecrutementService {
   }
 
   findAll(): Observable<DemandeRecrutement[]> {
-    return this.http.get<DemandeRecrutement[]>(`${apiRoot}/deleteRec/all`);
+    return this.http.get<DemandeRecrutement[]>(`${apiRoot}/demandeRec/all`);
   }
 
   findAllValidDemande(iden: number): Observable<Object[]> {

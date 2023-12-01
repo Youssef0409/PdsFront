@@ -32,6 +32,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker'; // Import the TimepickerModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     FindJobComponent,
     JobDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    SidenavComponent,
+    HeaderComponent,
+    HomeComponent,
+    DemandeOffreComponent
   ],
   imports: [
     NgxChartsModule,

@@ -13,11 +13,17 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) {}
+  private publicRoutes: string[] = ['/offer/All', '/other-public-endpoint'];
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    if (this.isPublicRoute(req.url)) {
+      // Skip attaching the authorization header for public routes
+      return next.handle(req);
+    }
+
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
 
@@ -55,5 +61,8 @@ export class TokenInterceptorService implements HttpInterceptor {
         return throwError(error);
       })
     );
+  }
+  private isPublicRoute(url: string): boolean {
+    return this.publicRoutes.some(route => url.endsWith(route));
   }
 }
