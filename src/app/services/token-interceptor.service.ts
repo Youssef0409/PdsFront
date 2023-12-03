@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) {}
-  private publicRoutes: string[] = ['/offer/All', '/other-public-endpoint'];
+  private publicRoutes: string[] = ['/offer/pagination/All', '/proj/pagination/All','/offres-et-projets'];
 
   intercept(
     req: HttpRequest<any>,

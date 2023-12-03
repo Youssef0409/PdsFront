@@ -36,11 +36,24 @@ export class OffreService {
       .set('page', page.toString())
       .set('size', size.toString());
 
-    return this.http.get<Offre[]>(`${this.apiUrl}/offer/All`, { params });
+    return this.http.get<Offre[]>(`${this.apiUrl}/offer/pagination/All`, { params });
   }
 
 
   rechercherOffresParDomaineEtTechnologie(domaine: DomaineExpertise, technologie: Technologie): Observable<Object[]> {
     return this.http.get<Object[]>(`${this.apiUrl}/offer/recherche/${domaine}/${technologie}`);
+  }
+
+  findAll(): Observable<Offre[]> {
+    return this.http.get<Offre[]>(`${this.apiUrl}proj/All`);
+  }
+
+
+  tousLesOffresProjets(page: number = 0, size: number = 4): Observable<any[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<any[]>(`${this.apiUrl}/offres-et-projets`, { params });
   }
 }

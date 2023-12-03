@@ -36,6 +36,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.component';
+import { Sidenav1Component } from './sidenav1/sidenav1.component';
+import { DemandeProjetComponent } from './entreprise/demande-projet/demande-projet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.
     SidenavComponent,
     HeaderComponent,
     HomeComponent,
-    DemandeOffreComponent
+    DemandeOffreComponent,
+    Sidenav1Component,
+    DemandeProjetComponent
   ],
   imports: [
     NgxChartsModule,

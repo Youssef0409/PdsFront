@@ -97,19 +97,12 @@
                                 <div class="small-section-tittle2">
                                     <h4>Job Type</h4>
                                 </div>
-                                <label class="container">Full Time
+                                <label class="container" (change)="onProjetCheckboxChange($event)">Entreprise
                                     <input type="checkbox" >
                                     <span class="checkmark"></span>
                                 </label>
-                                <label class="container">Part Time
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Remote
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Freelance
+                                
+                                <label class="container"  (change)="onFreelanceCheckboxChange($event)">Freelance
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                 </label>
@@ -244,14 +237,15 @@
                             </div>
                             <!-- Count of Job list End -->
                             <!-- single-job-content -->
-                            <div class="single-job-items mb-30" *ngFor="let offre of offres" >
+                            <div *ngIf="isFreelanceChecked" >
+                            <div class="single-job-items mb-30"  *ngFor="let offre of offres" >
                                 <div class="job-items">
                                     <div class="company-img">
                                         <a href="#"><img src="/../assets/img/icon/job-list1.png" alt=""></a>
                                     </div>
                                     <div class="job-tittle job-tittle2">
                                         <a href="#">
-                                            <h4>Digital Marketer</h4>
+                                            <h4>Digital Marketer {{offre.id}}</h4>
                                         </a>
                                         <ul>
                                             <li>Creative Agency</li>
@@ -261,24 +255,47 @@
                                     </div>
                                 </div>
                                 <div class="items-link items-link2 f-right">
-                                    <a (click)="DetailsPage(offre.id)">Full Time</a>
+                                    <a (click)="DetailsPage(offre.id,'offre')">Full Time</a>
                                     <span>7 hours ago</span>
                                 </div>
-                            </div>
+                            </div></div>
                             <!-- single-job-content -->
                            
                             <!-- single-job-content -->
-                            
+                          
                             <!-- single-job-content -->
-                           
+                            <div *ngIf="isProjetChecked ">
+                                <div class="single-job-items mb-30"  *ngFor="let projet of projets" >
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a href="#"><img src="/../assets/img/icon/job-list1.png" alt=""></a>
+                                        </div>
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="#">
+                                                <h4>Digital Marketer projet {{projet.id}}</h4>
+                                            </a>
+                                            <ul>
+                                                <li>Creative Agency</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                                                <li>$3500 - $4000</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items-link items-link2 f-right">
+                                        <a (click)="DetailsPage(projet.id,'projet')">Full Time</a>
+                                        <span>7 hours ago</span>
+                                    </div>
+                                </div></div>
                             <!-- single-job-content -->
-                            
+                          
                             <!-- single-job-content -->
                             
                             <!-- single-job-content -->
                            
                         </div>
+                        
                     </section>
+                    
                     <!-- Featured_job_end -->
                 </div>
             </div>
@@ -286,7 +303,10 @@
     </div>
     <!-- Job List Area End -->
     <!--Pagination Start  -->
-    <div class="pagination-area pb-115 text-center">
+   
+
+
+    <div class="pagination-area pb-115 text-center" >
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -294,7 +314,17 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">
                                 <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
-                                    <a class="page-link" (click)="goToPage(pageNumber)">
+                                    <a class="page-link" *ngIf="isFreelanceChecked && !isProjetChecked" (click)="goToPage(pageNumber)">
+                                        {{ pageNumber + 1 }}
+                                    </a>
+                                </li>
+                                <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
+                                    <a class="page-link"  *ngIf="isProjetChecked && !isFreelanceChecked" (click)="goToPage1(pageNumber)">
+                                        {{ pageNumber + 1 }}
+                                    </a>
+                                </li>
+                                <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
+                                    <a class="page-link"  *ngIf="isProjetChecked && isFreelanceChecked" (click)="goToPage1(pageNumber)">
                                         {{ pageNumber + 1 }}
                                     </a>
                                 </li>
