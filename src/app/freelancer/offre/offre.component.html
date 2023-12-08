@@ -67,7 +67,7 @@
                                   <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck4" /><label class="form-check-label" for="contacusercheck4"></label>{{dataitem.id}}</div>
                               </th>
                               
-                              <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png"  alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{dataitem.description}}</a></td>
+                              <td  *ngFor="let image of dataitem.productImagess"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{dataitem.description}}</a></td>
                                
                                 <td> <span class="badge badge-soft-primary mb-0">{{dataitem.prix_heure}}</span></td>
                                 <td><span class="badge badge-soft-danger mb-0">{{dataitem.domaineExpertise}}</span></td>

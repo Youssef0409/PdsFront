@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Offre } from 'src/app/models/offre';
 import { OffreService } from 'src/app/services/offre.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, ValidatorFn, Validators } from '@angular/forms';
 import { DomaineExpertise } from 'src/app/models/domaine-expertise';
 import { Technologie } from 'src/app/models/technologie';
 import * as alertifyjs from 'alertifyjs';
@@ -12,20 +12,14 @@ import { ProductImages } from 'src/app/models/product-images';
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-add-edit-offre',
   templateUrl: './add-edit-offre.component.html',
   styleUrls: ['./add-edit-offre.component.scss']
 })
 export class AddEditOffreComponent implements OnInit{
-  ngOnInit(): void {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      const user = JSON.parse(userData);
-       this.id_user = user.id;  
-            
-    }
-  }
+  
   domaineExpertiseOptions = Object.values(DomaineExpertise);
   technologieOptions = Object.values(Technologie);
 
@@ -43,56 +37,62 @@ export class AddEditOffreComponent implements OnInit{
   editmode: boolean = false;
   editdata: any;
   respdata: any;
-//  Reactiveform: FormGroup;
-  id_user: any;
+  
+  id_user!: string;
+  
   constructor(private snackBar: MatSnackBar,private formBuilder: FormBuilder, private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private offreService: OffreService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AddEditOffreComponent>
   )  {
-    //this.Reactiveform = this.formBuilder.group({
-     // id: [null, Validators.required],
-   //   description: [null, Validators.required],
-    //  prix_heure: [null, Validators.required],
-    //  domaineExpertise: [null, Validators.required], 
- //     technologie: [null, Validators.required],
-    //  productImages: [this.selectedFile,Validators.required],
-     // freelancer:[this.id_user, Validators.required],
-      // Add other form controls based on your Offre interface
-    }
-   // );
-
-  //  if (data && data.offre) {
-    //  this.editmode = true;
-    //  this.Reactiveform.patchValue(data.offre);
-   // }
-  //}
-
-
-
-
+    
   
-  getReservFormData() {
-    //this.addOffre();
+    
+
+  if (data && data.offre) {
+      this.editmode = true;
+      this.Reactiveform.patchValue(data.offre);
+    }
   }
 
-
-  //addOffre() {
-
+  Reactiveform = new FormGroup({
+    id: new FormControl({ value: 0, disabled: true }),
+    prix_heure: new FormControl("", Validators.required),
+    description: new FormControl("", Validators.required),
+    freelancer: new FormControl({ id: this.id_user }, Validators.required as any as ValidatorFn),
+    technologie: new FormControl("", Validators.required),
+    domaineExpertise: new FormControl("", Validators.required)
     
-   //console.log();
-   // this.offreService.addOffretWithImages(this.offre)
+  });
+  ngOnInit(): void {
+    const userData = localStorage.getItem('user');
 
-    //.subscribe(result => {
-    //  this.respdata = result;
-     /// if (this.respdata) {
-     //   this.dialogRef.close();
-    //    this.showSuccessMessage();
-   //   }
-    //  location.reload();
-   // });
-  //}
+    if (userData) {
+      const user = JSON.parse(userData);
+      this.id_user = user.id;
+      this.Reactiveform.get('freelancer')?.setValue({ id: this.id_user });
+
+
+
+      console.log(this.id_user);
+    }
+  }
+
+  getReservFormData() {
+    if (this.Reactiveform.valid) {
+      const editid = this.Reactiveform.getRawValue().id;
+      console.log(editid);
+      if (editid != null && this.editmode) {
+        this.addOffre();
+      } else {
+        this.addOffre();
+      }
+    } else {
+      alertifyjs.error("Merci d'entrer des données valides pour La Formation");
+    }
+  }
+
 
   showSuccessMessage() {
     const config = new MatSnackBarConfig();
@@ -105,93 +105,37 @@ export class AddEditOffreComponent implements OnInit{
 
 
 
+  
 
 
 
 
 
-  addProduct(offreForm: NgForm) {
-    console.log(this.offre);
-    const formData = this.prepareFormDataForProduct(this.offre);
-    this.offreService.addOffretWithImages(formData).subscribe(
-      (response: Offre) => {
-       offreForm.reset();
-        this.offre.productImagess = [];
-        if (this.offre.productImagess) {
-          this.dialogRef.close();
+
+  imageFiles: File[] = [];
+  onFileSelectedd(event: any): void {
+    this.imageFiles = event.target.files;
+  }
+
+  addOffre(): void {
+   
+      const offerData = this.Reactiveform.value;
+
+      // Call the service method to add the offer
+      this.offreService.addOffer(offerData, this.imageFiles)
+        .subscribe(response => {
+          console.log('Offer added successfully:', response);
+          if (response){
           this.showSuccessMessage();
-        }
-        location.reload();
-      
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
+          // Handle success, if needed
+          this.dialogRef.close();
+          location.reload();}
+        }, error => {
+          console.error('Error adding offer:', error);
+          // Handle error, if needed
+        });
+    
   }
-
-  prepareFormDataForProduct(offre: Offre): FormData {
-    const uploadImageData = new FormData();
-  
-    // Check if this.offre and this.offre.productImages are defined
-    if (this.offre && this.offre.productImagess) {
-      // Append the Offre object as JSON
-      uploadImageData.append(
-        'offre',
-        new Blob([JSON.stringify(offre)], { type: 'application/json' })
-      );
-  
-      // Append each image file
-      for (var i = 0; i < this.offre.productImagess.length; i++) {
-        const file = this.offre.productImagess[i].file;
-        
-        // Check if the file is defined before appending
-        if (file) {
-          uploadImageData.append('imageFile', file, file.name);
-        }
-      }
-    }
-  
-    return uploadImageData;
-  }
-
-  onFileSelected(event: any) {
-    if (this.offre && event.target.files) {
-      const file = event.target.files[0];
-  
-      // Check if file is defined before accessing its properties
-      if (file) {
-        const fileHandle: ProductImages = {
-          file: file,
-          url: this.sanitizer.bypassSecurityTrustUrl(
-            window.URL.createObjectURL(file)
-          ),
-          id: 0,
-          name: ''
-        };
-  
-        // Check if this.offre.productImages is defined before pushing
-        if (this.offre.productImagess) {
-          console.log(this.offre.productImagess);
-          this.offre.productImagess.push(fileHandle);
-        } else {
-          // If this.offre.productImages is undefined, create a new array with the file
-          this.offre.productImagess = [fileHandle];
-          console.log(this.offre.productImagess);
-        }
-      }
-    }
-  }
-  
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 // Dans votre service (offre.service.ts)
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Offre } from '../models/offre';
 import { DomaineExpertise } from '../models/domaine-expertise';
@@ -65,9 +65,29 @@ export class OffreService {
   
 
   addOffretWithImages(offre:FormData): Observable<any> {
-   
 
     // Adjust the API endpoint as needed
     return this.http.post<any>(`${this.apiUrl}/offer/create`, offre);
+  }
+
+
+
+  addOffer(offer: any, imageFiles: File[]): Observable<any> {
+    const formData: FormData = new FormData();
+
+    // Append offer data as a JSON string
+    formData.append(
+      'offre',
+      new Blob([JSON.stringify(offer)], { type: 'application/json' }))
+
+    // Append each image file
+    for (let i = 0; i < imageFiles.length; i++) {
+      formData.append('imageFile', imageFiles[i], imageFiles[i].name);
+    }
+
+    const headers = new HttpHeaders();
+    // Note: Do not set the Content-Type header; HttpClient will set it automatically for FormData.
+
+    return this.http.post<any>(`${this.apiUrl}/offer/create`, formData, { headers });
   }
 }
