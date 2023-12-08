@@ -36,7 +36,7 @@ export class AddEditOffreComponent implements OnInit{
     domaineExpertise: DomaineExpertise.DEVELOPPEMENT_LOGICIEL,
     technologie: Technologie.ANDROID,
     freelancer: { id: 1 }, // Assuming you have a User interface as well
-    productImages: [],
+    productImagess: [],
     id: 0
   };
 
@@ -116,7 +116,13 @@ export class AddEditOffreComponent implements OnInit{
     this.offreService.addOffretWithImages(formData).subscribe(
       (response: Offre) => {
        offreForm.reset();
-        this.offre.productImages = [];
+        this.offre.productImagess = [];
+        if (this.offre.productImagess) {
+          this.dialogRef.close();
+          this.showSuccessMessage();
+        }
+        location.reload();
+      
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -128,7 +134,7 @@ export class AddEditOffreComponent implements OnInit{
     const uploadImageData = new FormData();
   
     // Check if this.offre and this.offre.productImages are defined
-    if (this.offre && this.offre.productImages) {
+    if (this.offre && this.offre.productImagess) {
       // Append the Offre object as JSON
       uploadImageData.append(
         'offre',
@@ -136,8 +142,8 @@ export class AddEditOffreComponent implements OnInit{
       );
   
       // Append each image file
-      for (var i = 0; i < this.offre.productImages.length; i++) {
-        const file = this.offre.productImages[i].file;
+      for (var i = 0; i < this.offre.productImagess.length; i++) {
+        const file = this.offre.productImagess[i].file;
         
         // Check if the file is defined before appending
         if (file) {
@@ -165,13 +171,13 @@ export class AddEditOffreComponent implements OnInit{
         };
   
         // Check if this.offre.productImages is defined before pushing
-        if (this.offre.productImages) {
-          console.log(this.offre.productImages);
-          this.offre.productImages.push(fileHandle);
+        if (this.offre.productImagess) {
+          console.log(this.offre.productImagess);
+          this.offre.productImagess.push(fileHandle);
         } else {
           // If this.offre.productImages is undefined, create a new array with the file
-          this.offre.productImages = [fileHandle];
-          console.log(this.offre.productImages);
+          this.offre.productImagess = [fileHandle];
+          console.log(this.offre.productImagess);
         }
       }
     }

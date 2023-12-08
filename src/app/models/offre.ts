@@ -10,5 +10,5 @@ export interface Offre {
     domaineExpertise?: DomaineExpertise;
     technologie?: Technologie;
     freelancer?: User; // Assuming you have a User interface as well
-    productImages?:ProductImages[];
+    productImagess?:ProductImages[];
   }

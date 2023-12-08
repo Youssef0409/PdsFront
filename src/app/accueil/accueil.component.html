@@ -288,7 +288,7 @@
                         <!-- single-job-content -->
                         <div class="single-job-items mb-30"  *ngFor="let offre of offres">
                             <div class="job-items">
-                                <div class="company-img" *ngFor="let image of offre.productImages">
+                                <div class="company-img" *ngFor="let image of offre.productImagess">
                                     <a ><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" style="max-width: 100%; height: auto; max-height: 90px;"></a>
                                 </div>
                                 <div class="job-tittle">
