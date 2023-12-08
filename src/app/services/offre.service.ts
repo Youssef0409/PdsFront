@@ -1,7 +1,7 @@
 // Dans votre service (offre.service.ts)
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Offre } from '../models/offre';
 import { DomaineExpertise } from '../models/domaine-expertise';
 import { Technologie } from '../models/technologie';
@@ -31,6 +31,10 @@ export class OffreService {
     return this.http.get<Offre>(`${this.apiUrl}/offer/${id}`);
   }
 
+  getOffreByUserId(id: number): Observable<Offre[]> {
+    return this.http.get<Offre[]>(`${this.apiUrl}/offer/user/${id}`);
+  }
+
   tousLesOffres(page: number = 0, size: number = 4): Observable<Offre[]> {
     const params = new HttpParams()
       .set('page', page.toString())
@@ -45,7 +49,7 @@ export class OffreService {
   }
 
   findAll(): Observable<Offre[]> {
-    return this.http.get<Offre[]>(`${this.apiUrl}proj/All`);
+    return this.http.get<Offre[]>(`${this.apiUrl}/offer/All`);
   }
 
 
@@ -55,5 +59,15 @@ export class OffreService {
       .set('size', size.toString());
 
     return this.http.get<any[]>(`${this.apiUrl}/offres-et-projets`, { params });
+  }
+
+
+  
+
+  addOffretWithImages(offre:FormData): Observable<any> {
+   
+
+    // Adjust the API endpoint as needed
+    return this.http.post<any>(`${this.apiUrl}/offer/create`, offre);
   }
 }

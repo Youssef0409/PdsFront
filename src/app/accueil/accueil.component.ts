@@ -16,8 +16,9 @@ export class AccueilComponent implements OnInit{
   constructor(private router : Router,private http: HttpClient, private jwtHelper: JwtHelperService,private authService:AuthService,private offreService:OffreService) {}
   offres: Offre[] | undefined;
   ngOnInit(): void {
-    this.offreService.tousLesOffres().subscribe(
+    this.offreService.findAll().subscribe(
       (data: Offre[]) => {
+        
         // Display only the first three offers
         this.offres = data.slice(0, 3);
       },

@@ -39,7 +39,7 @@ export class ProjetService {
     return this.http.get<Projet>(`${this.apiRoot}proj/${id}`);
   }
 
-  tousLesProjets(page: number = 0, size: number = 4): Observable<Projet[]> {
+  tousLesProjets(page: number = 0, size: number = 10): Observable<Projet[]> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
@@ -54,6 +54,10 @@ export class ProjetService {
 
 
   findAll(): Observable<Projet[]> {
-    return this.http.get<Projet[]>(`${this.apiRoot}proj/All`);
+    return this.http.get<Projet[]>(`${this.apiRoot}/proj/All`);
+  }
+
+  getProjetByUserId(id: number): Observable<Projet[]> {
+    return this.http.get<Projet[]>(`${this.apiRoot}/proj/user/${id}`);
   }
 }

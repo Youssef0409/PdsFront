@@ -7,4 +7,5 @@ export interface DemandeRecrutement {
   offre?: Offre;
   date_demande?: Date;
   etatD?: string; //
+  
 }

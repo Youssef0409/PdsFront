@@ -38,6 +38,10 @@ import { HomeComponent } from './home/home.component';
 import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.component';
 import { Sidenav1Component } from './sidenav1/sidenav1.component';
 import { DemandeProjetComponent } from './entreprise/demande-projet/demande-projet.component';
+import { OffreComponent } from './freelancer/offre/offre.component';
+import { EntrepriseComponent } from './entreprise/entreprise/entreprise.component';
+import { ProjetComponent } from './entreprise/projet/projet.component';
+import { AddEditOffreComponent } from './freelancer/offre/add-edit-offre/add-edit-offre.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +55,11 @@ import { DemandeProjetComponent } from './entreprise/demande-projet/demande-proj
     HomeComponent,
     DemandeOffreComponent,
     Sidenav1Component,
-    DemandeProjetComponent
+    DemandeProjetComponent,
+    OffreComponent,
+    EntrepriseComponent,
+    ProjetComponent,
+    AddEditOffreComponent
   ],
   imports: [
     NgxChartsModule,

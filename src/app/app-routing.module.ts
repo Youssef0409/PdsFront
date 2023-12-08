@@ -8,9 +8,14 @@ import  {LoginComponent} from "./login/login.component";
 import { HomeComponent } from './home/home.component';
 import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.component';
 import { DemandeProjetComponent } from './entreprise/demande-projet/demande-projet.component';
+import { OffreComponent } from './freelancer/offre/offre.component';
+import { EntrepriseComponent } from './entreprise/entreprise/entreprise.component';
+import { ProjetComponent } from './entreprise/projet/projet.component';
 const routes: Routes = [
-  { path: 'demande-projet', component: DemandeProjetComponent },
-  { path: 'demande-offre', component: DemandeOffreComponent },
+  { path: 'freelancer/offre', component: OffreComponent },
+  { path: 'entreprise/projet', component: ProjetComponent },
+  { path: 'entreprise/demande-projet', component: DemandeProjetComponent },
+  { path: 'freelancer/demande-offre', component: DemandeOffreComponent },
   { path: 'test', component: HomeComponent },
   { path: 'home', component: AccueilComponent },
   { path: 'navbar', component: NavbarComponent },

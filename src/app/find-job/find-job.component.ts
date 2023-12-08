@@ -22,6 +22,7 @@ export class FindJobComponent implements OnInit {
   totalPages: number = 0;
   isFreelanceChecked: boolean = false;
   isProjetChecked: boolean = false;
+  imageUrl!: string;
   constructor(private router : Router,private offreService: OffreService,private renderer: Renderer2,private projetService: ProjetService) {}
 
   ngOnInit(): void {
@@ -45,6 +46,9 @@ onProjetCheckboxChange(event: any): void {
   getTousLesOffres(): void {
     this.offreService.tousLesOffres(this.currentPage).subscribe(
       (response: any) => {
+       
+       
+
         // Assuming your array is nested under a key 'content'
         this.offres = response.content;
         this.totalPages = response.totalPages;
@@ -59,8 +63,12 @@ onProjetCheckboxChange(event: any): void {
   getTousLesProjets(): void {
     this.projetService.tousLesProjets(this.currentPage).subscribe(
       (response: any) => {
+        console.log(response);
+      
         // Assuming your array is nested under a key 'content'
         this.projets = response.content;
+        console.log(this.projets);
+        
         this.totalPages = response.totalPages;
       },
       (error) => {

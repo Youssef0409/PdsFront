@@ -1,6 +1,7 @@
 import { User } from "./user";
 import { DomaineExpertise } from "./domaine-expertise";
 import { Technologie } from "./technologie";
+import { ProductImages } from "./product-images";
 
 export interface Offre {
     id: number;
@@ -9,4 +10,5 @@ export interface Offre {
     domaineExpertise?: DomaineExpertise;
     technologie?: Technologie;
     freelancer?: User; // Assuming you have a User interface as well
+    productImages?:ProductImages[];
   }

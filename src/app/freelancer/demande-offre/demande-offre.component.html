@@ -52,8 +52,8 @@
                     <div class="member-card pt-2 pb-2">
                         <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
                         <div class="">
-                            <h4>dataitem.user.firstname dataitem.user.lastname</h4>
-                            <p class="text-muted">dataitem.user.email <span> </span><span><a class="text-pink"></a></span></p>
+                            <h4>{{demande.entreprise?.firstname}} {{demande.entreprise?.lastname}}</h4>
+                            <p class="text-muted">{{demande.entreprise?.email}} <span> </span><span><a class="text-pink"></a></span></p>
                        
                         </div>
                        
@@ -72,14 +72,14 @@
                                
                                 <div class="col-5">
                                     <div class="mt-3">
-                                        <h4>dataitem.dateDebut | date: 'yyyy-MM-dd'</h4>
-                                        <p class="mb-0 text-muted">Date Debut</p>
+                                        <h4>{{demande.date_demande | date: 'yyyy-MM-dd'}}</h4>
+                                        <p class="mb-0 text-muted">Date D'envoie'</p>
                                     </div>
                                 </div>
                                 <div class="col-5">
                                     <div class="mt-3">
-                                        <h4>dataitem.dateFin</h4>
-                                        <p class="mb-0 text-muted">Date Fin</p>
+                                        <h4>{{demande.entreprise?.nomEntreprise}} </h4>
+                                        <p class="mb-0 text-muted">Entreprise</p>
                                     </div>
                                 </div>
                             </div>
@@ -87,15 +87,15 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="mt-3">
-                                    <h4>dataitem.user.telephone</h4>
+                                    <h4>{{demande.entreprise?.numTel}} </h4>
                                     <p class="mb-0 text-muted">Numéro</p>
                                 </div>
                             </div>
 
                             <div class="col-5">
                                 <div class="mt-3">
-                                    <h4>dataitem.type</h4>
-                                    <p class="mb-0 text-muted">Raison</p>
+                                    <h4>{{demande.etatD}} </h4>
+                                    <p class="mb-0 text-muted">Etat</p>
                                 </div>
                             </div>
 

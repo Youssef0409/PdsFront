@@ -29,6 +29,7 @@ export class DemandeOffreComponent implements OnInit {
   getAllDemandes() {
     this.demandeRecrutementService.findAll().subscribe(
       (data: DemandeRecrutement[]) => {
+       
         this.demandes = data;
       },
       (error) => {
@@ -41,6 +42,7 @@ export class DemandeOffreComponent implements OnInit {
   getDemandesEnCours() {
     this.demandeRecrutementService.findAllEnCours().subscribe(
       (data: DemandeRecrutement[]) => {
+        console.log(data);
         this.demandes = data;
       },
       (error) => {

@@ -240,8 +240,9 @@
                             <div *ngIf="isFreelanceChecked" >
                             <div class="single-job-items mb-30"  *ngFor="let offre of offres" >
                                 <div class="job-items">
-                                    <div class="company-img">
-                                        <a href="#"><img src="/../assets/img/icon/job-list1.png" alt=""></a>
+                                    <div class="company-img" *ngFor="let image of offre.productImages">
+                                        <a href="#"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" style="max-width: 100%; height: auto; max-height: 90px;">
+                                            ></a>
                                     </div>
                                     <div class="job-tittle job-tittle2">
                                         <a href="#">
@@ -267,8 +268,9 @@
                             <div *ngIf="isProjetChecked ">
                                 <div class="single-job-items mb-30"  *ngFor="let projet of projets" >
                                     <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="/../assets/img/icon/job-list1.png" alt=""></a>
+                                        <div class="company-img" *ngFor="let image of projet.productImages">
+                                            <a href="#"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" style="max-width: 100%; height: auto; max-height: 90px;">
+                                                ></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a href="#">
