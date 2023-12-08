@@ -84,7 +84,7 @@ export class OffreComponent implements OnInit{
         supprimer(id:any){
     
 
-          alertifyjs.confirm("Supprimer L'offre'","Voulez vous supprimer l'offre ?",()=>{ this.offreService.supprimerUneOffre(id).subscribe(del=>{
+          alertifyjs.confirm("Supprimer L'offre'","Voulez vous supprimer l'offre ?",()=>{ this.offreService.supprimerUneOffre(id).subscribe(()=>{
            this.AllOffre();
            this.showSuccessMessage();
           })

@@ -30,6 +30,9 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/alertifyjs/build/css/themes/default.min.css",
+              "node_modules/alertifyjs/build/css/alertify.min.css",
               "src/styles.scss",
               "src/assets/css/animate.min.css",
               "src/assets/css/bootstrap.min.css",
@@ -49,6 +52,7 @@
 
             ],
             "scripts": [
+             
               "src/assets/js/animated.headline.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/contact.js",

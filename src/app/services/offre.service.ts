@@ -64,12 +64,7 @@ export class OffreService {
 
   
 
-  addOffretWithImages(offre:FormData): Observable<any> {
-
-    // Adjust the API endpoint as needed
-    return this.http.post<any>(`${this.apiUrl}/offer/create`, offre);
-  }
-
+ 
 
 
   addOffer(offer: any, imageFiles: File[]): Observable<any> {
