@@ -24,15 +24,7 @@ export class AddEditOffreComponent implements OnInit{
   technologieOptions = Object.values(Technologie);
 
   selectedFile!: File;
-  offre:Offre ={
-    description: 'qsdqsd',
-    prix_heure: 50,
-    domaineExpertise: DomaineExpertise.DEVELOPPEMENT_LOGICIEL,
-    technologie: Technologie.ANDROID,
-    freelancer: { id: 1 }, // Assuming you have a User interface as well
-    productImagess: [],
-    id: 0
-  };
+
 
   editmode: boolean = false;
   editdata: any;
