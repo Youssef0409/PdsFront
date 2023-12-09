@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-        
+
 		<link rel="shortcut icon" type="image/x-icon" href="/../assets/img/favicon.ico">
 
 		<!-- CSS here -->
@@ -26,7 +26,7 @@
    </head>
 
    <body>
-  
+
     <!-- Preloader Start -->
    <!-- <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -49,7 +49,7 @@
                             <!-- Logo -->
                             <div class="logo">
                                 <a href="index.html"><img src="/../assets/img/logo/logo.png" alt=""></a>
-                            </div>  
+                            </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
                             <div class="menu-wrapper">
@@ -71,12 +71,21 @@
                                             <li><a href="contact.html">Contact</a></li>
                                         </ul>
                                     </nav>
-                                </div>          
+                                </div>
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
-                                </div>
+                                    <!-- If user is not logged in -->
+                                    <ng-container *ngIf="!isLoggedIn(); else loggedInButtons">
+                                      <a routerLink="/login" class="btn head-btn1">Register</a>
+                                      <a routerLink="/login" class="btn head-btn2">Login</a>
+                                    </ng-container>
+                                  
+                                    <!-- If user is logged in -->
+                                    <ng-template #loggedInButtons>
+                                      <a routerLink="/profile" class="btn head-btn1">Dashboard</a>
+                                      <a routerLink="/logout" class="btn head-btn2">Logout</a>
+                                    </ng-template>
+                                  </div>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -90,7 +99,7 @@
         <!-- Header End -->
     </header>
     <main>
-  
+
         <!-- slider Area Start-->
         <div class="slider-area ">
             <!-- Mobile Menu -->
@@ -124,8 +133,8 @@
                                     </div>
                                     <div class="search-form">
                                         <a href="#">Find job</a>
-                                    </div>	
-                                </form>	
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -697,8 +706,8 @@
     </footer>
 
   <!-- JS here -->
- 
-        
+
+
     </body>
 </html>
 
