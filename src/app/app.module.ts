@@ -42,6 +42,7 @@ import { OffreComponent } from './freelancer/offre/offre.component';
 import { EntrepriseComponent } from './entreprise/entreprise/entreprise.component';
 import { ProjetComponent } from './entreprise/projet/projet.component';
 import { AddEditOffreComponent } from './freelancer/offre/add-edit-offre/add-edit-offre.component';
+import { AddEditProjetComponent } from './entreprise/projet/add-edit-projet/add-edit-projet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { AddEditOffreComponent } from './freelancer/offre/add-edit-offre/add-edi
     OffreComponent,
     EntrepriseComponent,
     ProjetComponent,
-    AddEditOffreComponent
+    AddEditOffreComponent,
+    AddEditProjetComponent
   ],
   imports: [
     NgxChartsModule,

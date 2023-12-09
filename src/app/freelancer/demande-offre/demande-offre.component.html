@@ -50,8 +50,10 @@
             <div class="col-lg-4" *ngFor="let demande of demandes">
                 <div class="text-center card-box">
                     <div class="member-card pt-2 pb-2">
-                        <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                        <div class="">
+                        <div class="thumb-lg member-thumb mx-auto" *ngFor="let image of demande.offre?.productImagess">
+                            <img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" class="rounded-circle img-thumbnail" ></div>
+                       <br>
+                            <div class="">
                             <h4>{{demande.entreprise?.firstname}} {{demande.entreprise?.lastname}}</h4>
                             <p class="text-muted">{{demande.entreprise?.email}} <span> </span><span><a class="text-pink"></a></span></p>
                        

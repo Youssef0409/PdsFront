@@ -6,6 +6,7 @@ import { User } from "./user";
 export interface Projet {
     id: number;
     titre?: string;
+    place?: string;
     description?: string;
     domaineExpertise?: DomaineExpertise;
     technologie?: Technologie;
