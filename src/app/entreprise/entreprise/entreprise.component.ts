@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./entreprise.component.scss']
 })
 export class EntrepriseComponent {
-
+  sideBarOpen = true;
+ 
+  
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
 }

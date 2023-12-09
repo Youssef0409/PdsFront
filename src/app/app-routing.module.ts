@@ -11,7 +11,11 @@ import { DemandeProjetComponent } from './entreprise/demande-projet/demande-proj
 import { OffreComponent } from './freelancer/offre/offre.component';
 import { EntrepriseComponent } from './entreprise/entreprise/entreprise.component';
 import { ProjetComponent } from './entreprise/projet/projet.component';
+import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer-home.component';
+
 const routes: Routes = [
+  { path: 'freelancer/home', component: FreelancerHomeComponent},
+  { path: 'entreprise/home', component: EntrepriseComponent },
   { path: 'freelancer/offre', component: OffreComponent },
   { path: 'entreprise/projet', component: ProjetComponent },
   { path: 'entreprise/demande-projet', component: DemandeProjetComponent },

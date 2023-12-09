@@ -28,7 +28,7 @@
         border-radius: 5px;
         margin: 0 8px;
         &:hover {
-          background: rgb(160, 1, 105) !important;
+          background: #f60656 !important;
         }
       }
     }
@@ -43,9 +43,9 @@
     color: #f2f5f7 !important;
     ::ng-deep {
       .mat-list-item-content {
-        background: #2c3344 !important;
+        background: #f60656 !important;
         &:hover {
-          background: #2c3344 !important;
+          background: #f60656 !important;
         }
       }
     }
