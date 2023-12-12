@@ -83,7 +83,7 @@
                                     <!-- If user is logged in -->
                                     <ng-template #loggedInButtons>
                                       <a routerLink="/profile" class="btn head-btn1">Dashboard</a>
-                                      <a routerLink="/logout" class="btn head-btn2">Logout</a>
+                                      <a (click)="logout()" routerLink="/login" class="btn head-btn2">Logout</a>
                                     </ng-template>
                                   </div>
                             </div>
@@ -123,7 +123,7 @@
                                     </div>
                                     <div class="select-form">
                                         <div class="select-itms">
-                                            <select name="select" id="select1">
+                                            <select name="select" id="select1" class="nice-select">
                                                 <option value="">Location BD</option>
                                                 <option value="">Location PK</option>
                                                 <option value="">Location US</option>
@@ -257,7 +257,7 @@
         </div>
         <!-- Our Services End -->
         <!-- Online CV Area Start -->
-         <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="/../assets/img/gallery/cv_bg.jpg">
+         <div class="online-cv cv-bg section-overly pt-90 pb-120"   [style.background]="'url(/../assets/img/gallery/cv_bg.jpg)'">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
@@ -286,13 +286,13 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
+                        <div class="single-job-items mb-30"  *ngFor="let offre of offres">
                             <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="/../assets/img/icon/job-list1.png" alt=""></a>
+                                <div class="company-img" *ngFor="let image of offre.productImagess">
+                                    <a ><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" style="max-width: 100%; height: auto; max-height: 90px;"></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
+                                    <a ><h4>Digital Marketer</h4></a>
                                     <ul>
                                         <li>Creative Agency</li>
                                         <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
@@ -301,77 +301,18 @@
                                 </div>
                             </div>
                             <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
+                                <a (click)="DetailsPage(offre.id)">Full Time</a>
                                 <span>7 hours ago</span>
                             </div>
                         </div>
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="/../assets/img/icon/job-list2.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="/../assets/img/icon/job-list3.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="/../assets/img/icon/job-list4.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </section>
         <!-- Featured_job_end -->
         <!-- How  Apply Process Start-->
-        <div class="apply-process-area apply-bg pt-150 pb-150" data-background="/../assets/img/gallery/how-applybg.png">
+        <div class="apply-process-area apply-bg pt-150 pb-150" data-background="/../assets/img/gallery/how-applybg.png" [style.background]="'url(/../assets/img/gallery/how-applybg.png)'">
             <div class="container">
                 <!-- Section Tittle -->
                 <div class="row">

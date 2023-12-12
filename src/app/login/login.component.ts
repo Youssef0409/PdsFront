@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -15,7 +15,7 @@ import { Country } from '../models/country';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   registerRequest: RegisterRequest = {
     firstname: '',
     lastname: '',
@@ -34,6 +34,9 @@ export class LoginComponent {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService ,  
     private routes:Router,private authService: AuthService, private snackBar: MatSnackBar) {}
 
+    ngOnInit(): void {
+      
+    }
     showSuccessMessage() {
       const config = new MatSnackBarConfig();
       config.duration = 3000; // Duration in milliseconds

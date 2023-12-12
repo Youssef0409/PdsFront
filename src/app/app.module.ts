@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Angular Material Imports
 import { MatInputModule } from '@angular/material/input';
@@ -31,6 +32,16 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker'; // Import the TimepickerModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { DemandeOffreComponent } from './freelancer/demande-offre/demande-offre.component';
+import { Sidenav1Component } from './sidenav1/sidenav1.component';
+import { DemandeProjetComponent } from './entreprise/demande-projet/demande-projet.component';
+import { OffreComponent } from './freelancer/offre/offre.component';
+import { EntrepriseComponent } from './entreprise/entreprise/entreprise.component';
+import { ProjetComponent } from './entreprise/projet/projet.component';
+import { AddEditOffreComponent } from './freelancer/offre/add-edit-offre/add-edit-offre.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +49,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     FindJobComponent,
     JobDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    SidenavComponent,
+    HeaderComponent,
+    HomeComponent,
+    DemandeOffreComponent,
+    Sidenav1Component,
+    DemandeProjetComponent,
+    OffreComponent,
+    EntrepriseComponent,
+    ProjetComponent,
+    AddEditOffreComponent
   ],
   imports: [
     NgxChartsModule,
@@ -65,7 +86,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatPaginatorModule,
     NgbModalModule, TimepickerModule.forRoot(),
+
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
