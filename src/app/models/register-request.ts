@@ -9,6 +9,7 @@ export interface RegisterRequest {
   role?: Role;
   numTel : string;
   pays:string;
+  siteweb:string;
  
   
 }

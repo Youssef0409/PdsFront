@@ -177,6 +177,18 @@
                     required
                   />
                 </div>
+                <div class="input-box" *ngIf="registerRequest.role === 'Entreprise'">
+                 
+                  <i class="fa fa-globe" aria-hidden="true" style='color: blue'></i>
+
+                  <input
+                    [(ngModel)]="registerRequest.siteweb"
+                    name="siteweb"
+                    placeholder="Site Web"
+                    type="text"
+                    required
+                  />
+                </div>
 
                 <div class="input-box">
                 <i class="fa fa-globe" aria-hidden="true"></i>

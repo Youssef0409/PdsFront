@@ -79,18 +79,55 @@
                         <!-- single one -->
                         <div class="single-listing">
                            <div class="small-section-tittle2">
-                                 <h4>Job Category</h4>
+                                 <h4>Domaine d'expertise</h4>
                            </div>
                             <!-- Select job items start -->
                             <div class="select-job-items2">
                                 <select name="select" class="nice-select">
-                                    <option value="">All Category</option>
-                                    <option value="">Category 1</option>
-                                    <option value="">Category 2</option>
-                                    <option value="">Category 3</option>
-                                    <option value="">Category 4</option>
-                                </select>
-                            </div>
+                                    <option value="">Sélectionnez un domaine</option>
+                                    <option value="DEVELOPPEMENT_LOGICIEL">Développement logiciel</option>
+                                    <option value="CONCEPTION_GRAPHIQUE">Conception graphique</option>
+                                    <option value="REDACTION_ET_EDITION">Rédaction et édition</option>
+                               
+                                    <option value="MARKETING_NUMERIQUE(">Marketing numérique</option>
+                                    <option value="TRADUCTION_ET_LOCALISATION">Traduction et localisation</option>
+                                    <option value="CONSULTING_ET_GESTION_DE_PROJET">Consulting et gestion de projet</option>
+                                    <option value="VIDEO_ET_ANIMATION">Vidéo et animation</option>
+                                    <option value="CONCEPTION_DE_BASES_DE_DONNEES">Conception de bases de données</option>
+                                    <option value="SERVICES_INFORMATIQUES">Services informatiques</option>
+                                    <option value="SCIENCES_DES_DONNEES_ET_INTELLIGENCE_ARTIFICIELLE">Sciences des données et intelligence artificielle</option>
+                                    <option value="SEO">SEO</option>
+                                  </select>
+                            </div> <br> <br><br><br>
+                            <div class="small-section-tittle2">
+                                <h4>Technologie</h4>
+                          </div>
+                           <!-- Select job items start -->
+                           <div class="select-job-items2">
+                              
+                                <select name="select" class="nice-select">
+                                    <option value="">Sélectionnez une technologie</option>
+                                    <option value="PHOTOSHOP">Photoshop</option>
+                                    <option value="ORACLE">Oracle</option>
+                                    <option value="JAVA">Java</option>
+                                    <!-- Ajoutez manuellement les autres options -->
+                                    <option value="C_PLUS_PLUS">C++</option>
+                                    <option value="PYTHON">Python</option>
+                                    <option value="JAVASCRIPT">JavaScript</option>
+                                    <option value="HTML_CSS">HTML/CSS</option>
+                                    <option value="REACT">React</option>
+                                    <option value="ANGULAR">Angular</option>
+                                    <option value="SPRING">Spring</option>
+                                    <option value="NODE_JS">Node.js</option>
+                                    <option value="ANDROID">Android</option>
+                                    <option value="IOS">iOS</option>
+                                    <option value="DJANGO">Django</option>
+                                    <option value="FLASK">Flask</option>
+                                    <option value="RUBY">Ruby</option>
+                                    <option value="PHP">PHP</option>
+                                    <option value="SEO">SEO</option>
+                                  </select>
+                           </div>
                             <!--  Select job items End-->
                             <!-- select-Categories start -->
                             <div class="select-Categories pt-80 pb-50">
@@ -284,7 +321,7 @@
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a (click)="DetailsPage(projet.id,'projet')">Full Time</a>
+                                        <a (click)="DetailsPage(projet.id,'projet')">Details</a>
                                         <span>7 hours ago</span>
                                     </div>
                                 </div></div>

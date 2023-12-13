@@ -8,6 +8,9 @@ export interface Offre {
     description?: string;
     prix_heure?: number;
     domaineExpertise?: DomaineExpertise;
+    postDate?: Date;
+    experience?:string;
+    natureDuTravail?:string;
     technologie?: Technologie;
     freelancer?: User; // Assuming you have a User interface as well
     productImagess?:ProductImages[];

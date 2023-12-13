@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit{
     role: Role.FREELANCER,
     pays:'',
     numTel :'',
-    nomEntreprise:''
+    nomEntreprise:'',
+    siteweb:''
      
   };
   countries = Object.values(Country);

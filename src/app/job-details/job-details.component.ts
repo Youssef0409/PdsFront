@@ -14,6 +14,7 @@ import { DemandeRealisation } from '../models/demande-realisation';
 })
 export class JobDetailsComponent implements OnInit{
   id_user: any;
+  role: any;
   constructor(private router : Router,private demandeProjet:DemandeProjetService,private demandeRecrutementService: DemandeRecrutementService,private route: ActivatedRoute, private snackBar: MatSnackBar, private jwtHelper: JwtHelperService) {}
   id!: number;
  type!:string;
@@ -30,7 +31,8 @@ export class JobDetailsComponent implements OnInit{
       const userData = localStorage.getItem('user');
       if (userData) {
         const user = JSON.parse(userData);
-         this.id_user = user.id;       
+         this.id_user = user.id;  
+         this.role = user.role;       
       }
   }
 
@@ -62,6 +64,7 @@ export class JobDetailsComponent implements OnInit{
     };
 
     if (this.type == 'offre'){
+      if(this.role == "Entreprise"){
     this.demandeRecrutementService.createDemandeRecrutement(newDemandeRecrutement)
       .subscribe(
         (createdDemandeRecrutement) => {
@@ -75,7 +78,9 @@ export class JobDetailsComponent implements OnInit{
           console.error('Error creating Demande Recrutement:', error);
         }
       );
-  }else{
+      }else{ this.showError1Message();}
+  
+    }else{ if(this.role == "FREELANCER"){
     this.demandeProjet.createDemandeRealisation(newDemandeProjet)
       .subscribe(
         (createdDemandeRealisation) => {
@@ -90,7 +95,7 @@ export class JobDetailsComponent implements OnInit{
         }
       );
 
-
+    }else{this.showErrorMessage();}
   }
 
 
@@ -122,6 +127,20 @@ export class JobDetailsComponent implements OnInit{
     this.snackBar.open('Vous avez deja envoyé !', 'Close', config);
   }
 
+  showError1Message() {
+    const config = new MatSnackBarConfig();
+    config.duration =7000; // Duration in milliseconds
+    config.horizontalPosition = 'center'; // Set the horizontal position to center
+    config.verticalPosition = 'bottom' ; // Set the vertical position to top
 
- 
+    this.snackBar.open('Vous devez etre une entreprise pour recruter!', 'Close', config);
+  }
+  showErrorMessage() {
+    const config = new MatSnackBarConfig();
+    config.duration = 7000; // Duration in milliseconds
+    config.horizontalPosition = 'center'; // Set the horizontal position to center
+    config.verticalPosition = 'bottom' ; // Set the vertical position to top
+
+    this.snackBar.open('Tu Dois connecter en tant que freelancer pour postuler!', 'Close', config);
+  }
 }

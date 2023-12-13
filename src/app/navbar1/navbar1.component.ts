@@ -6,11 +6,11 @@ import { AuthService } from '../services/auth.service';
 import { OffreService } from '../services/offre.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-navbar1',
+  templateUrl: './navbar1.component.html',
+  styleUrls: ['./navbar1.component.scss']
 })
-export class NavbarComponent implements OnInit{
+export class Navbar1Component implements OnInit{
   role: any;
   ngOnInit(): void {
    

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Projet } from '../models/projet';
@@ -13,30 +13,21 @@ export class ProjetService {
   constructor(private http: HttpClient) {}
 
 
-  ajouterUnProjet(projet: Projet, imageFiles: File[]): Observable<Projet> {
-    const formData = new FormData();
-    formData.append('projet', JSON.stringify(projet));
-
-    for (let i = 0; i < imageFiles.length; i++) {
-      formData.append('imageFile', imageFiles[i]);
-    }
-
-    return this.http.post<Projet>(`${this.apiRoot}proj/create`, formData);
-  }
+  
 
   updateUnProjet(projet: Projet, id: number): Observable<Projet> {
     const formData = new FormData();
     formData.append('projet', JSON.stringify(projet));
 
-    return this.http.put<Projet>(`${this.apiRoot}proj/${id}`, formData);
+    return this.http.put<Projet>(`${this.apiRoot}/proj/${id}`, formData);
   }
 
   supprimerUnProjet(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiRoot}proj/${id}`);
+    return this.http.delete<void>(`${this.apiRoot}/proj/${id}`);
   }
 
   getProjetById(id: number): Observable<Projet> {
-    return this.http.get<Projet>(`${this.apiRoot}proj/${id}`);
+    return this.http.get<Projet>(`${this.apiRoot}/proj/${id}`);
   }
 
   tousLesProjets(page: number = 0, size: number = 10): Observable<Projet[]> {
@@ -49,7 +40,7 @@ export class ProjetService {
 
 
   rechercherProjetsParDomaineEtTechnologie(domaine: string, technologie: string): Observable<any> {
-    return this.http.get(`${this.apiRoot}proj/recherche/${domaine}/${technologie}`);
+    return this.http.get(`${this.apiRoot}/proj/recherche/${domaine}/${technologie}`);
   }
 
 
@@ -59,5 +50,26 @@ export class ProjetService {
 
   getProjetByUserId(id: number): Observable<Projet[]> {
     return this.http.get<Projet[]>(`${this.apiRoot}/proj/user/${id}`);
+  }
+
+
+
+  addProjet(projet: any, imageFiles: File[]): Observable<any> {
+    const formData: FormData = new FormData();
+
+    // Append offer data as a JSON string
+    formData.append(
+      'projet',
+      new Blob([JSON.stringify(projet)], { type: 'application/json' }))
+
+    // Append each image file
+    for (let i = 0; i < imageFiles.length; i++) {
+      formData.append('imageFile', imageFiles[i], imageFiles[i].name);
+    }
+
+    const headers = new HttpHeaders();
+    // Note: Do not set the Content-Type header; HttpClient will set it automatically for FormData.
+
+    return this.http.post<any>(`${this.apiRoot}/proj/create`, formData, { headers });
   }
 }

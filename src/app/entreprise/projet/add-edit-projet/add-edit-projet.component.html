@@ -3,7 +3,7 @@
 
 
   <div class="dialog-container">
-    <h1>Ajouter une Offre</h1>
+    <h1>Ajouter une Projet</h1>
     <form class="form-container" [formGroup]="Reactiveform" (ngSubmit)="getReservFormData()">
       <!--  <div class="form-field">      <form class="form-container"  #offreForm="ngForm" (ngSubmit)="addProduct(offreForm)">
             <mat-form-field>
@@ -18,17 +18,45 @@
             </mat-form-field>
         </div>
 
-       
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput type="text" formControlName="place" required>
+            </mat-form-field>
+        </div>
 
+       
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Titre</mat-label>
+                <input matInput type="text" formControlName="titre" required>
+            </mat-form-field>
+        </div>
+        
         
         
         <div class="form-field">
             <mat-form-field>
-                <mat-label>Prix par Heure</mat-label>
-                <input matInput type="number" formControlName="prix_heure" required>
+                <mat-label>Budget</mat-label>
+                <input matInput type="number" formControlName="budget" required>
             </mat-form-field>
         </div>
 
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Durée</mat-label>
+                <input matInput type="number" formControlName="duree" required>
+            </mat-form-field>
+        </div>
+        
+
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Nombre de postes</mat-label>
+                <input matInput type="number" formControlName="nombreDePostesVacants" required>
+            </mat-form-field>
+        </div>
+        
         <div class="form-field">
             <mat-form-field>
                 <mat-label>Domaine d'Expertise</mat-label>

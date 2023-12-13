@@ -80,7 +80,7 @@
                                   
                                     <!-- If user is logged in -->
                                     <ng-template #loggedInButtons>
-                                      <a routerLink="/profile" class="btn head-btn1">Dashboard</a>
+                                      <a style="color: white;"  (click)="Dashboard()" class="btn head-btn1">Dashboard</a>
                                       <a (click)="logout()" routerLink="/login" class="btn head-btn2">Logout</a>
                                     </ng-template>
                                   </div>

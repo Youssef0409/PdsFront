@@ -6,12 +6,17 @@ import { User } from "./user";
 export interface Projet {
     id: number;
     titre?: string;
+    place?: string;
     description?: string;
     domaineExpertise?: DomaineExpertise;
     technologie?: Technologie;
     imageUrl?: string;
     budget?: number;
     duree?: number;
+    postDate?: Date;
+    nombreDePostesVacants?:number;
+    experience?:string;
+    natureDuTravail?:string;
     statusProjet?: string;
     entreprise?: User;
     productImages?:ProductImages[];

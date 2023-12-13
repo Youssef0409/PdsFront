@@ -1,19 +1,21 @@
 <mat-nav-list>
-    <div class="logo py-4">
-      <img src="./assets/logo.svg" alt="Company Logo" />
-    </div>
+  <div class="col-lg-3 col-md-2">
+    <!-- Logo -->
+    <div class="logo">
+        <a href="index.html"><img src="/../assets/img/logo/logo.png" alt=""></a>
+    </div>  
+</div>
     <mat-divider></mat-divider>
     <h2 matSubheader class="mt-2" style="color: white;" >APPLICATIONS</h2>
   
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/test">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/freelancer/home">
       <mat-icon>home</mat-icon> Home
     </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
-      <mat-icon>dashboard</mat-icon> Dashboard
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/freelancer/offre">
+      <mat-icon>dashboard</mat-icon> Offre
     </a>
-    <a mat-list-item> <mat-icon>edit</mat-icon> Link 3 </a>
-    <a mat-list-item> <mat-icon>edit</mat-icon> Link 4 </a>
-    <a mat-list-item> <mat-icon>edit</mat-icon> Link 5 </a>
-    <a mat-list-item> <mat-icon>edit</mat-icon> Link 6 </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/freelancer/demande-offre">
+      <mat-icon>dashboard</mat-icon>Demande Offre
+    </a>
   </mat-nav-list>
   
