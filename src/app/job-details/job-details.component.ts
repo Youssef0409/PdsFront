@@ -6,6 +6,8 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DemandeProjetService } from '../services/demande-projet.service';
 import { DemandeRealisation } from '../models/demande-realisation';
+import { OffreService } from '../services/offre.service';
+import { ProjetService } from '../services/projet.service';
 
 @Component({
   selector: 'app-job-details',
@@ -15,28 +17,60 @@ import { DemandeRealisation } from '../models/demande-realisation';
 export class JobDetailsComponent implements OnInit{
   id_user: any;
   role: any;
-  constructor(private router : Router,private demandeProjet:DemandeProjetService,private demandeRecrutementService: DemandeRecrutementService,private route: ActivatedRoute, private snackBar: MatSnackBar, private jwtHelper: JwtHelperService) {}
+ 
+  offreDetails: any; // Adjust the type based on your Offre model
+  projetDetails: any; // Adjust the type based on your Projet model
+  constructor(private serviceprojet:ProjetService,private servicoffre:OffreService,private router : Router,private demandeProjet:DemandeProjetService,private demandeRecrutementService: DemandeRecrutementService,private route: ActivatedRoute, private snackBar: MatSnackBar, private jwtHelper: JwtHelperService) {}
   id!: number;
  type!:string;
   
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.id = +params.get('id')!;
-      this.type =params.get('type')!;
-      console.log(this.id)
-      // Now you can use 'this.id' in your component
-    });
+ ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    this.id = +params.get('id')!;
+    this.type = params.get('type')!;
+    console.log(this.id, this.type);
 
-    
-      const userData = localStorage.getItem('user');
-      if (userData) {
-        const user = JSON.parse(userData);
-         this.id_user = user.id;  
-         this.role = user.role;       
-      }
-  }
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const user = JSON.parse(userData);
+      this.id_user = user.id;
+      this.role = user.role;
+    }
 
+    // Fetch details based on type
+    if (this.type === 'offre') {
+      this.fetchOffreDetails(this.id);
+    } else if (this.type === 'projet') {
+      this.fetchProjetDetails(this.id);
+    }
+  });
+}
 
+fetchOffreDetails(id: number): void {
+  this.servicoffre.getOffreById(id).subscribe(
+    (offreDetails) => {
+      console.log('Offre Details:', offreDetails);
+      this.offreDetails = offreDetails;
+      // Display your offre details in the template
+    },
+    (error) => {
+      console.error('Error fetching Offre Details:', error);
+    }
+  );
+}
+
+fetchProjetDetails(id: number): void {
+  this.serviceprojet.getProjetById(id).subscribe(
+    (projetDetails) => {
+      console.log('Projet Details:', projetDetails);
+      this.projetDetails = projetDetails;
+      // Display your projet details in the template
+    },
+    (error) => {
+      console.error('Error fetching Projet Details:', error);
+    }
+  );
+}
   onCreateDemandeRecrutement(): void {
     if (!this.isUserLoggedIn()) {
       // If not logged in, navigate to the login page

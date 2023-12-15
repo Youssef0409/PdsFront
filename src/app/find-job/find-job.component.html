@@ -74,39 +74,55 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Job Category Listing start -->
-                    <div class="job-category-listing mb-50">
-                        <!-- single one -->
-                        <div class="single-listing">
-                           <div class="small-section-tittle2">
-                                 <h4>Domaine d'expertise</h4>
-                           </div>
-                            <!-- Select job items start -->
-                            <div class="select-job-items2">
-                                <select name="select" class="nice-select">
-                                    <option value="">Sélectionnez un domaine</option>
-                                    <option value="DEVELOPPEMENT_LOGICIEL">Développement logiciel</option>
-                                    <option value="CONCEPTION_GRAPHIQUE">Conception graphique</option>
-                                    <option value="REDACTION_ET_EDITION">Rédaction et édition</option>
-                               
-                                    <option value="MARKETING_NUMERIQUE(">Marketing numérique</option>
-                                    <option value="TRADUCTION_ET_LOCALISATION">Traduction et localisation</option>
-                                    <option value="CONSULTING_ET_GESTION_DE_PROJET">Consulting et gestion de projet</option>
-                                    <option value="VIDEO_ET_ANIMATION">Vidéo et animation</option>
-                                    <option value="CONCEPTION_DE_BASES_DE_DONNEES">Conception de bases de données</option>
-                                    <option value="SERVICES_INFORMATIQUES">Services informatiques</option>
-                                    <option value="SCIENCES_DES_DONNEES_ET_INTELLIGENCE_ARTIFICIELLE">Sciences des données et intelligence artificielle</option>
-                                    <option value="SEO">SEO</option>
-                                  </select>
-                            </div> <br> <br><br><br>
-                            <div class="small-section-tittle2">
-                                <h4>Technologie</h4>
-                          </div>
-                           <!-- Select job items start -->
-                           <div class="select-job-items2">
-                              
-                                <select name="select" class="nice-select">
-                                    <option value="">Sélectionnez une technologie</option>
+                   <!-- Add Offre and Projet Buttons with Increased Margin -->
+<!-- Add Offre and Projet Buttons with Increased Margin -->
+<!-- Add Offre and Projet Buttons with Icons -->
+
+<form  (ngSubmit)="onFormSubmit(filtreForm.value)" #filtreForm="ngForm">
+    <div class="row">
+        <div class="col-6 mb-4">
+          <label>
+            <input type="radio" name="type" [(ngModel)]="type" value="offre" (change)="setType('offre')">
+            Offre
+          </label>
+        </div>
+        <div class="col-6 mb-4">
+          <label>
+            <input type="radio" name="type" [(ngModel)]="type" value="projet" (change)="setType('projet')">
+            Projet
+          </label>
+        </div>
+      </div>
+  
+    <div class="job-category-listing mb-50">
+      <div class="single-listing">
+        <div class="small-section-tittle2">
+          <h4>Domaine d'expertise</h4>
+        </div>
+        <div class="select-job-items2">
+          <select name="domaineExpertise" class="nice-select" [(ngModel)]="filtre.domaineExpertise">
+            <option value="">Sélectionnez un domaine</option>
+            <option value="DEVELOPPEMENT_LOGICIEL">Développement logiciel</option>
+            <option value="CONCEPTION_GRAPHIQUE">Conception graphique</option>
+            <option value="REDACTION_ET_EDITION">Rédaction et édition</option>
+       
+            <option value="MARKETING_NUMERIQUE(">Marketing numérique</option>
+            <option value="TRADUCTION_ET_LOCALISATION">Traduction et localisation</option>
+            <option value="CONSULTING_ET_GESTION_DE_PROJET">Consulting et gestion de projet</option>
+            <option value="VIDEO_ET_ANIMATION">Vidéo et animation</option>
+            <option value="CONCEPTION_DE_BASES_DE_DONNEES">Conception de bases de données</option>
+            <option value="SERVICES_INFORMATIQUES">Services informatiques</option>
+            <option value="SCIENCES_DES_DONNEES_ET_INTELLIGENCE_ARTIFICIELLE">Sciences des données et intelligence artificielle</option>
+            <option value="SEO">SEO</option>
+          </select>
+        </div>
+        <br> <br><br><br>
+        <div class="small-section-tittle2">
+          <h4>Technologie</h4>
+        </div>
+        <div class="select-job-items2">
+          <select name="technologie" class="nice-select" [(ngModel)]="filtre.technologie">
+            <option value="">Sélectionnez une technologie</option>
                                     <option value="PHOTOSHOP">Photoshop</option>
                                     <option value="ORACLE">Oracle</option>
                                     <option value="JAVA">Java</option>
@@ -126,391 +142,297 @@
                                     <option value="RUBY">Ruby</option>
                                     <option value="PHP">PHP</option>
                                     <option value="SEO">SEO</option>
-                                  </select>
-                           </div>
-                            <!--  Select job items End-->
-                            <!-- select-Categories start -->
-                            <div class="select-Categories pt-80 pb-50">
-                                <div class="small-section-tittle2">
-                                    <h4>Job Type</h4>
-                                </div>
-                                <label class="container" (change)="onProjetCheckboxChange($event)">Entreprise
-                                    <input type="checkbox" >
-                                    <span class="checkmark"></span>
-                                </label>
-                                
-                                <label class="container"  (change)="onFreelanceCheckboxChange($event)">Freelance
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <!-- select-Categories End -->
-                        </div>
-                        <!-- single two -->
-                        <div class="single-listing">
-                           <div class="small-section-tittle2">
-                                 <h4>Job Location</h4>
-                           </div>
-                            <!-- Select job items start -->
-                            <div class="select-job-items2">
-                                <select name="select" class="nice-select">
-                                    <option value="">Anywhere</option>
-                                    <option value="">Category 1</option>
-                                    <option value="">Category 2</option>
-                                    <option value="">Category 3</option>
-                                    <option value="">Category 4</option>
-                                </select>
-                            </div>
-                            <!--  Select job items End-->
-                            <!-- select-Categories start -->
-                            <div class="select-Categories pt-80 pb-50">
-                                <div class="small-section-tittle2">
-                                    <h4>Experience</h4>
-                                </div>
-                                <label class="container">1-2 Years
-                                    <input type="checkbox" >
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">2-3 Years
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">3-6 Years
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">6-more..
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <!-- select-Categories End -->
-                        </div>
-                        <!-- single three -->
-                        <div class="single-listing">
-                            <!-- select-Categories start -->
-                            <div class="select-Categories pb-50">
-                                <div class="small-section-tittle2">
-                                    <h4>Posted Within</h4>
-                                </div>
-                                <label class="container">Any
-                                    <input type="checkbox" >
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Today
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 2 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 3 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 5 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 10 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <!-- select-Categories End -->
-                        </div>
-                        <div class="single-listing">
-                            <!-- Range Slider Start -->
-                            <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
-                                <div class="small-section-tittle2">
-                                    <h4>Filter Jobs</h4>
-                                </div>
-                                <div class="widgets_inner">
-                                    <div class="range_item">
-                                        <!-- <div id="slider-range"></div> -->
-                                        <input type="text" class="js-range-slider" value="" />
-                                        <div class="d-flex align-items-center">
-                                            <div class="price_text">
-                                                <p>Price :</p>
-                                            </div>
-                                            <div class="price_value d-flex justify-content-center">
-                                                <input type="text" class="js-input-from" id="amount" readonly />
-                                                <span>to</span>
-                                                <input type="text" class="js-input-to" id="amount" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
-                          <!-- Range Slider End -->
-                        </div>
-                    </div>
-                    <!-- Job Category Listing End -->
-                </div>
-                <!-- Right content -->
-                <div class="col-xl-9 col-lg-9 col-md-8">
-                    <!-- Featured_job_start -->
-                    <section class="featured-job-area">
-                        <div class="container">
-                            <!-- Count of Job list Start -->
-                            <div class="row">
-                                <div class="col-lg-12" >
-                                    <div class="count-job mb-35">
-                                        <span>39, 782 Jobs found</span>
-                                        <!-- Select job items start -->
-                                        <div class="select-job-items">
-                                            <span>Sort by</span>
-                                            <select name="select" >
-                                                <option value="">None</option>
-                                                <option value="">job list</option>
-                                                <option value="">job list</option>
-                                                <option value="">job list</option>
-                                            </select>
-                                        </div>
-                                        <!--  Select job items End-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Count of Job list End -->
-                            <!-- single-job-content -->
-                            <div *ngIf="isFreelanceChecked" >
-                            <div class="single-job-items mb-30"  *ngFor="let offre of offres" >
-                                <div class="job-items">
-                                    <div class="company-img" *ngFor="let image of offre.productImagess">
-                                        <a href="#"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" style="max-width: 100%; height: auto; max-height: 90px;">
-                                            ></a>
-                                    </div>
-                                    <div class="job-tittle job-tittle2">
-                                        <a href="#">
-                                            <h4>Digital Marketer {{offre.id}}</h4>
-                                        </a>
-                                        <ul>
-                                            <li>Creative Agency</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                            <li>$3500 - $4000</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="items-link items-link2 f-right">
-                                    <a (click)="DetailsPage(offre.id,'offre')">Full Time</a>
-                                    <span>7 hours ago</span>
-                                </div>
-                            </div></div>
-                            <!-- single-job-content -->
-                           
-                            <!-- single-job-content -->
-                          
-                            <!-- single-job-content -->
-                            <div *ngIf="isProjetChecked ">
-                                <div class="single-job-items mb-30"  *ngFor="let projet of projets" >
-                                    <div class="job-items">
-                                        <div class="company-img" *ngFor="let image of projet.productImages">
-                                            <a href="#"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" style="max-width: 100%; height: auto; max-height: 90px;">
-                                                ></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer projet {{projet.id}}</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a (click)="DetailsPage(projet.id,'projet')">Details</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div></div>
-                            <!-- single-job-content -->
-                          
-                            <!-- single-job-content -->
-                            
-                            <!-- single-job-content -->
-                           
-                        </div>
-                        
-                    </section>
-                    
-                    <!-- Featured_job_end -->
-                </div>
-            </div>
+          </select>
         </div>
+        <div class="select-Categories pt-80 pb-50">
+          <div class="small-section-tittle2">
+            <h4>Job Type</h4>
+          </div>
+          <label class="container">
+            Entreprise
+            <input type="checkbox" (click)="onProjetCheckboxChange" >
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            Freelance
+            <input type="checkbox" (click)="onFreelanceCheckboxChange" >
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="single-listing">
+        <div class="select-Categories pt-80 pb-50">
+          <div class="small-section-tittle2">
+            <h4>Experience</h4>
+          </div>
+          <select name="experience" class="nice-select" [(ngModel)]="filtre.experience">
+            <option value="">expérience</option>
+            <option value="ONE_TO_TWO_YEARS">1-2 Years</option>
+            <option value="TWO_TO_THREE_YEARS">2-3 Years</option>
+            <option value="THREE_TO_SIX_YEARS">3-6 Years</option>
+            <option value="SIX_MORE_YEARS">6-more..</option>
+          </select>
+        </div>
+      </div>
+      <div class="single-listing">
+        <div class="select-Categories pt-80 pb-50">
+          <div class="small-section-tittle2">
+            <h4>Nature du travail</h4>
+          </div>
+          <select name="natureTravail" class="nice-select" [(ngModel)]="filtre.natureTravail">
+            <option value=""> nature du travail</option>
+            <option value="FULL_TIME">Temps plein</option>
+            <option value="PART_TIME">Temps partiel</option>
+            <option value="CONTRACT">Contrat</option>
+            <option value="FREELANCE">Freelance</option>
+            <option value="INTERNSHIP">Stage</option>
+            <option value="TEMPORARY">Temporaire</option>
+            <option value="OTHER">Autre</option>
+          </select>
+        </div>
+      </div>
     </div>
-    <!-- Job List Area End -->
-    <!--Pagination Start  -->
+    <button type="submit" class="btn btn-primary btn-block">
+        <i class="fas fa-search"></i> Rechercher
+      </button>
+  </form>
+  
+    <!-- single-job-content -->
    
-
-
-    <div class="pagination-area pb-115 text-center" >
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="single-wrap d-flex justify-content-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
-                                    <a class="page-link" *ngIf="isFreelanceChecked && !isProjetChecked" (click)="goToPage(pageNumber)">
-                                        {{ pageNumber + 1 }}
-                                    </a>
-                                </li>
-                                <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
-                                    <a class="page-link"  *ngIf="isProjetChecked && !isFreelanceChecked" (click)="goToPage1(pageNumber)">
-                                        {{ pageNumber + 1 }}
-                                    </a>
-                                </li>
-                                <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
-                                    <a class="page-link"  *ngIf="isProjetChecked && isFreelanceChecked" (click)="goToPage1(pageNumber)">
-                                        {{ pageNumber + 1 }}
-                                    </a>
-                                </li>
-                                
-                            <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
+    <!-- single-job-content -->
+  
+    <!-- single-job-content -->
+    <div  *ngIf="offresFiltres.length > 0">
+        <div class="single-job-items mb-30" *ngFor="let offre of offresFiltres">
+               <!-- Display offre details here -->
+               <div class="job-items">
+                <div class="company-img" *ngFor="let image of offre.productImagess">
+                  <a href="#"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}"
+                      style="max-width: 100%; height: auto; max-height: 90px;"></a>
+                </div>
+                <div class="job-tittle job-tittle2">
+                    <a href="#">
+                        <h4>Digital Marketer projet {{offre.id}}</h4>
+                    </a>
+                    <ul>
+                        <li>Creative Agency</li>
+                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                        <li>$3500 - $4000</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <!--Pagination End  -->
+            <div class="items-link items-link2 f-right">
+                <a (click)="DetailsPage(offre.id,'offre')">Details</a>
+                <span>7 hours ago</span>
+            </div>
+        </div></div>
+        <div  *ngIf="projetsFiltres.length > 0">
+            <div class="single-job-items mb-30" *ngFor="let proj of projetsFiltres">
+                   <!-- Display offre details here -->
+                   <div class="job-items">
+                    <div class="company-img" *ngFor="let image of proj.productImagess">
+                      <a href="#"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}"
+                          style="max-width: 100%; height: auto; max-height: 90px;"></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4>Digital Marketer projet {{proj.id}}</h4>
+                        </a>
+                        <ul>
+                            <li>Creative Agency</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                            <li>$3500 - $4000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <a (click)="DetailsPage(proj.id,'projet')">Details</a>
+                    <span>7 hours ago</span>
+                </div>
+            </div></div>
+    <!-- single-job-content -->
+  
+    <!-- single-job-content -->
     
+    <!-- single-job-content -->
+   
+</div>
+
+
+
+<!-- Featured_job_end -->
+</div>
+</div>
+</div>
+
+<!-- Job List Area End -->
+<!--Pagination Start  -->
+
+
+
+<div class="pagination-area pb-115 text-center" >
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="single-wrap d-flex justify-content-center">
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-start">
+        <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
+            <a class="page-link" *ngIf="isFreelanceChecked && !isProjetChecked" (click)="goToPage(pageNumber)">
+                {{ pageNumber + 1 }}
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
+            <a class="page-link"  *ngIf="isProjetChecked && !isFreelanceChecked" (click)="goToPage1(pageNumber)">
+                {{ pageNumber + 1 }}
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage === pageNumber">
+            <a class="page-link"  *ngIf="isProjetChecked && isFreelanceChecked" (click)="goToPage1(pageNumber)">
+                {{ pageNumber + 1 }}
+            </a>
+        </li>
+        
+    <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+    </ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--Pagination End  -->
+
 </main>
 <footer>
-    <!-- Footer Start-->
-    <div class="footer-area footer-bg footer-padding">
-        <div class="container">
-            <div class="row d-flex justify-content-between">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                   <div class="single-footer-caption mb-50">
-                     <div class="single-footer-caption mb-30">
-                         <div class="footer-tittle">
-                             <h4>About Us</h4>
-                             <div class="footer-pera">
-                                 <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
-                            </div>
-                         </div>
-                     </div>
-
-                   </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>Contact Info</h4>
-                            <ul>
-                                <li>
-                                <p>Address :Your address goes
-                                    here, your demo address.</p>
-                                </li>
-                                <li><a href="#">Phone : +8880 44338899</a></li>
-                                <li><a href="#">Email : info@colorlib.com</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>Important Link</h4>
-                            <ul>
-                                <li><a href="#"> View Project</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Testimonial</a></li>
-                                <li><a href="#">Proparties</a></li>
-                                <li><a href="#">Support</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>Newsletter</h4>
-                            <div class="footer-pera footer-pera2">
-                             <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
-                         </div>
-                         <!-- Form -->
-                         <div class="footer-form" >
-                             <div id="mc_embed_signup">
-                                 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                 method="get" class="subscribe_form relative mail_part">
-                                     <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                     class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                     onblur="this.placeholder = ' Email Address '">
-                                     <div class="form-icon">
-                                         <button type="submit" name="submit" id="newsletter-submit"
-                                         class="email_icon newsletter-submit button-contactForm"><img src="/../assets/img/icon/form.png" alt=""></button>
-                                     </div>
-                                     <div class="mt-10 info"></div>
-                                 </form>
-                             </div>
-                         </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           <!--  -->
-           <div class="row footer-wejed justify-content-between">
-                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                      <!-- logo -->
-                      <div class="footer-logo mb-20">
-                        <a href="index.html"><img src="/../assets/img/logo/logo2_footer.png" alt=""></a>
-                      </div>
-                   </div>
-                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                    <div class="footer-tittle-bottom">
-                        <span>5000+</span>
-                        <p>Talented Hunter</p>
-                    </div>
-                   </div>
-                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="footer-tittle-bottom">
-                            <span>451</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                   </div>
-                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <!-- Footer Bottom Tittle -->
-                        <div class="footer-tittle-bottom">
-                            <span>568</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                   </div>
-           </div>
-        </div>
+<!-- Footer Start-->
+<div class="footer-area footer-bg footer-padding">
+<div class="container">
+<div class="row d-flex justify-content-between">
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+<div class="single-footer-caption mb-50">
+<div class="single-footer-caption mb-30">
+ <div class="footer-tittle">
+     <h4>About Us</h4>
+     <div class="footer-pera">
+         <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
     </div>
-    <!-- footer-bottom area -->
-    <div class="footer-bottom-area footer-bg">
-        <div class="container">
-            <div class="footer-border">
-                 <div class="row d-flex justify-content-between align-items-center">
-                     <div class="col-xl-10 col-lg-10 ">
-                         <div class="footer-copy-right">
-                             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+ </div>
+</div>
+
+</div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+<div class="single-footer-caption mb-50">
+<div class="footer-tittle">
+    <h4>Contact Info</h4>
+    <ul>
+        <li>
+        <p>Address :Your address goes
+            here, your demo address.</p>
+        </li>
+        <li><a href="#">Phone : +8880 44338899</a></li>
+        <li><a href="#">Email : info@colorlib.com</a></li>
+    </ul>
+</div>
+
+</div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+<div class="single-footer-caption mb-50">
+<div class="footer-tittle">
+    <h4>Important Link</h4>
+    <ul>
+        <li><a href="#"> View Project</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Testimonial</a></li>
+        <li><a href="#">Proparties</a></li>
+        <li><a href="#">Support</a></li>
+    </ul>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+<div class="single-footer-caption mb-50">
+<div class="footer-tittle">
+    <h4>Newsletter</h4>
+    <div class="footer-pera footer-pera2">
+     <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
+ </div>
+ <!-- Form -->
+ <div class="footer-form" >
+     <div id="mc_embed_signup">
+         <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+         method="get" class="subscribe_form relative mail_part">
+             <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+             class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+             onblur="this.placeholder = ' Email Address '">
+             <div class="form-icon">
+                 <button type="submit" name="submit" id="newsletter-submit"
+                 class="email_icon newsletter-submit button-contactForm"><img src="/../assets/img/icon/form.png" alt=""></button>
+             </div>
+             <div class="mt-10 info"></div>
+         </form>
+     </div>
+ </div>
+</div>
+</div>
+</div>
+</div>
+<!--  -->
+<div class="row footer-wejed justify-content-between">
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+<!-- logo -->
+<div class="footer-logo mb-20">
+<a href="index.html"><img src="/../assets/img/logo/logo2_footer.png" alt=""></a>
+</div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+<div class="footer-tittle-bottom">
+<span>5000+</span>
+<p>Talented Hunter</p>
+</div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+<div class="footer-tittle-bottom">
+    <span>451</span>
+    <p>Talented Hunter</p>
+</div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+<!-- Footer Bottom Tittle -->
+<div class="footer-tittle-bottom">
+    <span>568</span>
+    <p>Talented Hunter</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- footer-bottom area -->
+<div class="footer-bottom-area footer-bg">
+<div class="container">
+<div class="footer-border">
+<div class="row d-flex justify-content-between align-items-center">
+<div class="col-xl-10 col-lg-10 ">
+ <div class="footer-copy-right">
+     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                         </div>
-                     </div>
-                     <div class="col-xl-2 col-lg-2">
-                         <div class="footer-social f-right">
-                             <a href="#"><i class="fab fa-facebook-f"></i></a>
-                             <a href="#"><i class="fab fa-twitter"></i></a>
-                             <a href="#"><i class="fas fa-globe"></i></a>
-                             <a href="#"><i class="fab fa-behance"></i></a>
-                         </div>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End-->
+ </div>
+</div>
+<div class="col-xl-2 col-lg-2">
+ <div class="footer-social f-right">
+     <a href="#"><i class="fab fa-facebook-f"></i></a>
+     <a href="#"><i class="fab fa-twitter"></i></a>
+     <a href="#"><i class="fas fa-globe"></i></a>
+     <a href="#"><i class="fab fa-behance"></i></a>
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer End-->
 </footer>
-</body>
-</html>
-    
-
+</body></html>

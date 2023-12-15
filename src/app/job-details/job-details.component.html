@@ -31,7 +31,7 @@
 <main>
 
     <!-- Hero Area Start-->
-    <div class="slider-area ">
+    <div class="slider-area "  *ngIf="type === 'offre'">
     <div class="single-slider section-overly slider-height2 d-flex align-items-center" [style.background]="'url(/../assets/img/hero/about.jpg)'">
         <div class="container">
             <div class="row">
@@ -55,16 +55,16 @@
                     <div class="single-job-items mb-50">
                         <div class="job-items">
                             <div class="company-img company-img-details">
-                                <a href="#"><img src="/../assets/img/icon/job-list1.png" alt=""></a>
+                                <a href="#"><img src="{{ offreDetails?.imageUrl }}" alt=""></a>
                             </div>
                             <div class="job-tittle">
                                 <a href="#">
-                                    <h4>Digital Marketer</h4>
+                                    <h4>{{ offreDetails?.titre }}</h4>
                                 </a>
                                 <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
+                                    <li>{{ offreDetails?.entreprise?.name }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>{{ offreDetails?.place }}</li>
+                                    <li>{{ offreDetails?.budget ? '$' + offreDetails?.budget : '' }} - {{ offreDetails?.duree ? '$' + offreDetails?.duree : '' }}</li>
                                 </ul>
                             </div>
                         </div>

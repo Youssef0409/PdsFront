@@ -4,6 +4,7 @@ import { Technologie } from "./technologie";
 import { ProductImages } from "./product-images";
 
 export interface Offre {
+
     id: number;
     description?: string;
     prix_heure?: number;
