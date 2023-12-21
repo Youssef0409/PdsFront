@@ -31,7 +31,7 @@
 <main>
 
     <!-- Hero Area Start-->
-    <div class="slider-area "  *ngIf="type === 'offre'">
+    <div class="slider-area "  >
     <div class="single-slider section-overly slider-height2 d-flex align-items-center" [style.background]="'url(/../assets/img/hero/about.jpg)'">
         <div class="container">
             <div class="row">
@@ -52,23 +52,81 @@
                 <!-- Left Content -->
                 <div class="col-xl-7 col-lg-8">
                     <!-- job single -->
-                    <div class="single-job-items mb-50">
+                    <div class="single-job-items mb-50" *ngIf="type === 'projet'">
                         <div class="job-items">
-                            <div class="company-img company-img-details">
-                                <a href="#"><img src="{{ offreDetails?.imageUrl }}" alt=""></a>
+                            <div class="company-img company-img-details" *ngFor="let image of projetDetails.productImages" >
+                                <a href="#"
+                                ><img
+                                  [src]="
+                                    'data:' +
+                                    image.type +
+                                    ';base64,' +
+                                    image.picByte
+                                  "
+                                  alt="{{ image.name }}"
+                                  style="width: 100%; height: auto; max-height: 300px; object-fit: cover;"
+
+                              /></a>
                             </div>
+                            
                             <div class="job-tittle">
                                 <a href="#">
-                                    <h4>{{ offreDetails?.titre }}</h4>
+                                    <h4><mat-icon>work</mat-icon> {{ projetDetails?.titre }}</h4>
                                 </a>
                                 <ul>
-                                    <li>{{ offreDetails?.entreprise?.name }}</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>{{ offreDetails?.place }}</li>
-                                    <li>{{ offreDetails?.budget ? '$' + offreDetails?.budget : '' }} - {{ offreDetails?.duree ? '$' + offreDetails?.duree : '' }}</li>
+                                    <li><mat-icon>code</mat-icon> {{ projetDetails?.technologie }}</li>
+                                    <li><mat-icon>description</mat-icon> {{ projetDetails?.description }}</li>
+                                    <li><mat-icon>category</mat-icon> {{ projetDetails?.domaineExpertise }}</li>
+                                    <li><mat-icon>location_on</mat-icon> {{ projetDetails?.place }}</li>
+                                    <li><mat-icon>attach_money</mat-icon> {{ projetDetails?.statusProjet ? '$' + projetDetails?.budget : '' }} - {{ projetDetails?.duree ? '$' + projetDetails?.duree : '' }}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                        <!--- jobd detail projet-->
+
+                        <div class="single-job-items mb-50" *ngIf="type === 'offre'">
+                            <div class="job-items">
+                                <div class="company-img company-img-details" *ngFor="let image of offreDetails.productImagess" >
+                                    <a href="#"
+                                    ><img
+                                      [src]="
+                                        'data:' +
+                                        image.type +
+                                        ';base64,' +
+                                        image.picByte
+                                      "
+                                      alt="{{ image.name }}"
+                                      style="width: 100%; height: auto; max-height: 300px; object-fit: cover;"
+
+                                  /></a>
+                                  <mat-icon>insert_photo</mat-icon>
+
+                                </div>
+                                
+                                <div class="job-tittle">
+                                    <a href="#" class="offer-link">
+                                        <h4 class="description"> <mat-icon>description</mat-icon> {{ offreDetails?.description }}</h4>
+                                    </a>
+                                    <ul class="offer-details">
+                                        <li class="freelancer-name"><mat-icon>person</mat-icon> {{ offreDetails?.freelancer?.firstname }}</li>
+                                        <li class="domaine-expertise"><mat-icon>category</mat-icon> {{ offreDetails?.domaineExpertise }}</li>
+                                        <li class="technologie"><mat-icon>developer_board</mat-icon> {{ offreDetails?.technologie }}</li>
+                                        <li class="budget-duree">
+                                            <mat-icon>attach_money</mat-icon> {{ offreDetails?.prix_heure ? '$' + offreDetails?.prix_heure : '' }} - 
+                
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                </div>
+                                </div>
+                                
+
+
+                        <!--detail proejt-->
+                        
+                 
                       <!-- job single End -->
                    
                     <div class="job-post-details">
