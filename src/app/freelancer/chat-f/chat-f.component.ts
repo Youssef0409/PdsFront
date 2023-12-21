@@ -181,6 +181,8 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
         });
     }
   }
+
+
   loadUsers() {
     if (this.id_user) {
       const ongoingRequests$ = this.demandeRecrutementService.findAllEnCours()
@@ -207,6 +209,7 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
           console.log('Unique Users:', uniqueUsers);
   
           this.users = uniqueUsers;
+          console.log('Unique Users:', uniqueUsers);
         },
         (error) => {
           console.error('Error loading users:', error);
