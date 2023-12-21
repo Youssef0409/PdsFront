@@ -1,8 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, forkJoin, map } from 'rxjs';
 import { Message } from 'src/app/models/Message';
+import { DemandeRecrutement } from 'src/app/models/demande-recrutement';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { DemandeRecrutementService } from 'src/app/services/demande-offre.service';
 import { WebSocketService } from 'src/app/services/websocket.service';
 
 @Component({
@@ -44,14 +46,15 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
   constructor(
     private webSocketService: WebSocketService,
     private authService: AuthService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private demandeRecrutementService : DemandeRecrutementService
+    
   ) {
     
     this.messageContainer = new QueryList<ElementRef>();
   }
 
   ngOnInit(): void {
-    this.loadUsers();
 
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
@@ -63,6 +66,8 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
     if (userData) {
       const user = JSON.parse(userData);
       this.id_user = user.id;
+      this.loadUsers();
+
     }
 
     this.chatMessagesSubject.subscribe((messages) => {
@@ -176,20 +181,43 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
         });
     }
   }
-
   loadUsers() {
-    this.authService.getAllUsers().subscribe(
-      (users: User[]) => {
-        this.users = users;
-      },
-      (error) => {
-        console.error('Error loading users:', error);
-      }
-    );
+    if (this.id_user) {
+      const ongoingRequests$ = this.demandeRecrutementService.findAllEnCours()
+        .pipe(
+          map((data: DemandeRecrutement[]) => data.map(demande => demande.entreprise).filter(user => !!user) as User[])
+        );
+  
+      const validatedRequests$ = this.demandeRecrutementService.findAllValider()
+        .pipe(
+          map((data: DemandeRecrutement[]) => data.map(demande => demande.entreprise).filter(user => !!user) as User[])
+        );
+  
+      forkJoin([ongoingRequests$, validatedRequests$]).subscribe(
+        ([ongoingUsers, validatedUsers]) => {
+          console.log('Ongoing Users:', ongoingUsers);
+          console.log('Validated Users:', validatedUsers);
+  
+          const allUsers = Array.from(new Set([...ongoingUsers, ...validatedUsers]));
+  
+          console.log('All Users (Including Duplicates):', allUsers);
+  
+          const uniqueUsers = Array.from(new Map(allUsers.map(user => [user.id, user]))).map(([_, user]) => user);
+  
+          console.log('Unique Users:', uniqueUsers);
+  
+          this.users = uniqueUsers;
+        },
+        (error) => {
+          console.error('Error loading users:', error);
+        }
+      );
+    } else {
+      console.error('No user ID available to load related users.');
+    }
   }
-  loadChatMessages(userId: number) {
-    this.selectUser(userId);
-  }
+  
+  
 
  
   private scrollToBottom() {

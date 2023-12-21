@@ -5,13 +5,15 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, forkJoin } from 'rxjs';
 
 import { Message } from 'src/app/models/Message';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { WebSocketService } from 'src/app/services/websocket.service';
 import { ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { DemandeProjetService } from 'src/app/services/demande-projet.service';
+import { DemandeRealisation } from 'src/app/models/demande-realisation';
 
 @Component({
   selector: 'app-chat',
@@ -52,25 +54,28 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
   constructor(
     private webSocketService: WebSocketService,
     private authService: AuthService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private demandeService : DemandeProjetService
   ) {
     
     this.messageContainer = new QueryList<ElementRef>();
   }
 
   ngOnInit(): void {
-    this.loadUsers();
-
+    
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
       this.selectUser(parseInt(storedUserId, 10));
+    
+
     }
     this.webSocketService.setChatComponent(this);
-
     const userData = localStorage.getItem('user');
     if (userData) {
       const user = JSON.parse(userData);
       this.id_user = user.id;
+      this.loadUsers(); 
+
     }
 
     this.chatMessagesSubject.subscribe((messages) => {
@@ -186,15 +191,41 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
   }
 
   loadUsers() {
-    this.authService.getAllUsers().subscribe(
-      (users: User[]) => {
-        this.users = users;
-      },
-      (error) => {
-        console.error('Error loading users:', error);
-      }
-    );
+    if (this.id_user) {
+      const ongoingRequests$ = this.demandeService.findAllEnCours();
+      
+      const acceptedRequests$ = this.demandeService.findAllValidDemande(this.id_user);
+  
+      forkJoin([ongoingRequests$, acceptedRequests$]).subscribe(
+        ([ongoingRequests, acceptedRequests]) => {
+          const allUsers = [
+            ...(ongoingRequests as DemandeRealisation[]).map(demande => demande.freelancer).filter((user): user is User => !!user),
+            ...(acceptedRequests as DemandeRealisation[]).map(demande => demande.freelancer).filter((user): user is User => !!user),
+          ];
+  
+  
+          console.log('All Users:', allUsers);
+  
+         
+          const uniqueUsers = Array.from(new Set(allUsers.map(user => user?.id)))
+            .map(id => allUsers.find(user => user?.id === id) as User); // Use "as User" to assert type
+            console.log('Unique Users:', uniqueUsers);
+          this.users = uniqueUsers;
+      
+
+        },
+        (error) => {
+          console.error('Error loading users:', error);
+        }
+      );
+    } else {
+      console.error('No user ID available');
+    }
   }
+  
+  
+  
+  
   loadChatMessages(userId: number) {
     this.selectUser(userId);
   }
