@@ -52,11 +52,12 @@
                                 <th scope="col" class="ps-4" style="width: 50px;">
                                     <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck" /><label class="form-check-label" for="contacusercheck"></label></div>
                                 </th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Titre</th>
                                 
-                                <th scope="col">Email</th>
-                                <th scope="col">Date de Naissance</th>
-                                <th scope="col">Telephone</th>
+                             
+                                <th scope="col">Domaine</th>
+                                <th scope="col">Technologie</th>
+                                <th scope="col">Freelancer</th>
                                 <th scope="col" style="width: 200px;">Action</th>
                             </tr>
                         </thead>
@@ -69,9 +70,10 @@
                               
                               <td  *ngFor="let image of dataitem.productImagess"><img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="{{ image.name }}" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{dataitem.description}}</a></td>
                                
-                                <td> <span class="badge badge-soft-primary mb-0">{{dataitem.prix_heure}}</span></td>
+                            
                                 <td><span class="badge badge-soft-danger mb-0">{{dataitem.domaineExpertise}}</span></td>
                                 <td> <span class="badge badge-soft-primary mb-0">{{dataitem.technologie}}</span></td>
+                                <td> <span class="badge badge-soft-primary mb-0">{{dataitem.freelancer?.firstname}} {{dataitem.freelancer?.lastname}}</span></td>
                                
                                
                                
