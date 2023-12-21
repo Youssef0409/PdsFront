@@ -118,6 +118,7 @@ import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    
     StompService,
     {
       provide: StompConfig,
