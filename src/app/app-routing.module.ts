@@ -12,7 +12,8 @@ import { OffreComponent } from './freelancer/offre/offre.component';
 import { EntrepriseComponent } from './entreprise/entreprise/entreprise.component';
 import { ProjetComponent } from './entreprise/projet/projet.component';
 import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer-home.component';
-
+import { ChatComponent } from './entreprise/chat/chat.component';
+import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
 const routes: Routes = [
   { path: 'freelancer/home', component: FreelancerHomeComponent},
   { path: 'entreprise/home', component: EntrepriseComponent },
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'findJob', component: FindJobComponent },
   { path: 'jobDetails/:id/:type', component: JobDetailsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'entreprise/chat', component: ChatComponent },
+  { path: 'freelancer/chat', component: ChatFComponent },
 
   // Add more routes as needed
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route

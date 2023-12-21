@@ -45,6 +45,9 @@ import { AddEditOffreComponent } from './freelancer/offre/add-edit-offre/add-edi
 import { AddEditProjetComponent } from './entreprise/projet/add-edit-projet/add-edit-projet.component';
 import { Navbar1Component } from './navbar1/navbar1.component';
 import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer-home.component';
+import { ChatComponent } from './entreprise/chat/chat.component';
+import { StompConfig, StompService } from '@stomp/ng2-stompjs';
+import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +68,9 @@ import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer
     AddEditOffreComponent,
     AddEditProjetComponent,
     Navbar1Component,
-    FreelancerHomeComponent
+    FreelancerHomeComponent,
+    ChatComponent,
+    ChatFComponent
   ],
   imports: [
     NgxChartsModule,
@@ -107,11 +112,25 @@ import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer
     })
   ],
   
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true,
-  },],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+    StompService,
+    {
+      provide: StompConfig,
+      useValue: {
+        url: 'ws://localhost:8080/ws',
+        headers: {},
+        heartbeat_in: 0,
+        heartbeat_out: 20000,
+        reconnect_delay: 5000,
+        debug: true,
+      },
+    },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

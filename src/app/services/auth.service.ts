@@ -75,4 +75,14 @@ export class AuthService {
 
 
   
+  getAllUsers(): Observable<User[]> {
+    const authToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    const url = 'http://localhost:8080/api/v1/auth/users';
+    return this.http.get<User[]>(url, { headers });
+  }
 }
