@@ -48,6 +48,7 @@ import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer
 import { ChatComponent } from './entreprise/chat/chat.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
+import { MesprojetsComponent } from './freelancer/mesprojets/mesprojets.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
     Navbar1Component,
     FreelancerHomeComponent,
     ChatComponent,
-    ChatFComponent
+    ChatFComponent,
+    MesprojetsComponent
   ],
   imports: [
     NgxChartsModule,
