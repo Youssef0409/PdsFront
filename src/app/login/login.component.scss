@@ -2,6 +2,7 @@
 //@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 
+
 .logo {
     position: absolute;
     top: 10px;
@@ -31,7 +32,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f3f2f6;
+    background-image: url('../../assets/bg-img.jpg');
+    height: 100vh;
    // background: #ffffff;
     padding: 30px;
   }
