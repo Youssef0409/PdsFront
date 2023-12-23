@@ -1,9 +1,42 @@
 <h1 mat-dialog-title>Ticket Details</h1>
 <div mat-dialog-content>
-  <p><strong>Status:</strong> {{ data.status }}</p>
-  <p><strong>Summary:</strong> {{ data.summary }}</p>
-  <p><strong>Description:</strong> {{ data.description }}</p>
+  <p>
+    <i class="fas fa-info-circle"></i>
+    <strong>Status:</strong>
+    {{ data.status }}
+  </p>
+  <p>
+    <i class="fas fa-bookmark"></i>  <strong>Summary:</strong>
+     {{ data.summary }}
+  </p>
+  <p>
+    <i class="fas fa-file-alt"></i><strong>Description:</strong>
+  {{ data.description }}
+  </p>
+
+  <div *ngIf="data.lastUpdated">
+    <p>
+      <strong>Last Updated:</strong> <i class="far fa-clock"></i>
+      {{ data.lastUpdated | date: 'medium' }}
+    </p>
+  </div>
+
+  <div *ngIf="data.createdBy">
+    <p>
+        <i class="fas fa-user"></i>   <strong>Created By:</strong>
+    {{ data.createdBy.username }}
+    </p>
+  </div>
+
+  <div *ngIf="data.assignedTo">
+    <p>
+        <i class="fas fa-user"></i>    <strong>Assigned To:</strong>
+     {{ data.assignedTo.username }}
+    </p>
+  </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
+  <button mat-button (click)="onClose()">
+    <i class="fas fa-times"></i> Close
+  </button>
 </div>

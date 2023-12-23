@@ -136,7 +136,7 @@ onPageChange(page: number) {
   
 openTicketDetails(ticket: Ticket): void {
   const dialogRef = this.dialog.open(TicketDetailsComponent, {
-    width: '400px',
+    width: '700px',
     data: ticket,
     panelClass: 'custom-dialog-class' 
 
