@@ -1,0 +1,38 @@
+
+
+mat-dialog-title {
+    font-size: 2em;
+    color: #2c3e50; 
+    margin-bottom: 15px;
+  }
+  
+  mat-dialog-content {
+    padding: 15px;
+    color: #555; 
+  }
+  
+  mat-dialog-content p {
+    margin: 10px 0;
+  }
+  
+  mat-dialog-actions {
+    justify-content: flex-end;
+    padding: 15px;
+    background-color: #ecf0f1; 
+    border-top: 1px solid #bdc3c7; 
+  }
+  
+  button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+  }
+  
+  button:hover {
+    background-color: #2980b9; 
+  }
+  

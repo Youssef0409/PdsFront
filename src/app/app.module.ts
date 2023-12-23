@@ -53,6 +53,7 @@ import { SuiviProjetComponent } from './entreprise/suivi-projet/suivi-projet.com
 import { CreateIssueDialogComponent } from './entreprise/create-issue-dialog/create-issue-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MesprojetsComponent } from './freelancer/mesprojets/mesprojets.component';
+import { TicketDetailsComponent } from './freelancer/ticket-details/ticket-details.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { MesprojetsComponent } from './freelancer/mesprojets/mesprojets.componen
     SuiviOffreComponent,
     SuiviProjetComponent,
     CreateIssueDialogComponent,
-    MesprojetsComponent
+    MesprojetsComponent,
+    TicketDetailsComponent
   ],
   imports: [
     NgxChartsModule,

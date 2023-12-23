@@ -6,6 +6,7 @@ export interface Ticket {
   summary: string;
   status: TicketStatus; // Utilisez l'enum TicketStatus ici
   lastUpdated: string;
+  description : string
   assignedTo: any;
   createdBy: any;
 

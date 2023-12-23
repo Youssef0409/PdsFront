@@ -16,6 +16,7 @@ export interface Ticket {
   status: TicketStatus;
   lastUpdated: string;
   assignedTo: any;
+  description : string
   createdBy: any;
 }
 @Component({
@@ -28,6 +29,7 @@ export class CreateIssueDialogComponent implements OnInit{
   id_user!: number;
   selectedStatus: TicketStatus = TicketStatus.TO_DO;
   summary: string = '';
+  description : string ='';
   selectedAssignee: any = null;
   statuses = Object.values(TicketStatus);
   assignedUsers: any[] = [];
@@ -82,6 +84,7 @@ export class CreateIssueDialogComponent implements OnInit{
     if (this.assignedUsers.length > 0) {
       const newTicket = {
         summary: this.summary,
+        description :this.description,
         status: TicketStatus[this.selectedStatus],
         createdBy: { id: this.id_user },
         assignedTo: { id: this.assignedUsers[0].id },

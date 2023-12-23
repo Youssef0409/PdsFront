@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { TicketService } from 'src/app/services/ticket.service';
+import { TicketDetailsComponent } from '../ticket-details/ticket-details.component';
 export enum TicketStatus {
   TO_DO,
   IN_PROGRESS,
@@ -10,6 +12,7 @@ export enum TicketStatus {
 export interface Ticket {
   id: number;
   summary: string;
+  description : string
   status: TicketStatus;
   lastUpdated: string;
   assignedTo: any;
@@ -36,7 +39,7 @@ export class SuiviOffreComponent implements OnInit {
   todoTickets: Ticket[] = [];
   inProgressTickets: Ticket[] = [];
   doneTickets: Ticket[] = [];
-  constructor(private ticketService: TicketService) {}
+  constructor(private ticketService: TicketService , private dialog: MatDialog) {}
 
   ngOnInit(): void {
     const userData = localStorage.getItem('user');
@@ -131,5 +134,16 @@ onPageChange(page: number) {
   this.updatePagination();
 }
   
-  
+openTicketDetails(ticket: Ticket): void {
+  const dialogRef = this.dialog.open(TicketDetailsComponent, {
+    width: '400px',
+    data: ticket,
+    panelClass: 'custom-dialog-class' 
+
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The ticket details dialog was closed');
+  });
+}
 }

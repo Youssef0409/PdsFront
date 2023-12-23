@@ -13,6 +13,7 @@ export interface Ticket {
   summary: string;
   status: TicketStatus;
   lastUpdated: string;
+  description : string
   assignedTo: any;
   createdBy: any;
 }
