@@ -46,20 +46,17 @@ export class FindJobComponent implements OnInit {
 
 onFormSubmit(formValue: any) {
   this.offresFiltres = [];
-  console.log('Form submitted with values:', formValue);
   const type = this.filtre.type;
 
   if (type === 'offre') {
     this.http.get<any[]>('http://localhost:8080/api/v1/rechercher-offres', { params: formValue })
       .subscribe(resultats => {
         this.offresFiltres = resultats;
-        console.log('Offre Search Results:', this.offresFiltres);
       });
   } else if (type === 'projet') {
     this.http.get<any[]>('http://localhost:8080/api/v1/rechercher-projets', { params: formValue })
       .subscribe(resultats => {
         this.projetsFiltres = resultats;
-        console.log('Projet Search Results:', this.projetsFiltres);
       });
   }
 }
@@ -106,11 +103,8 @@ onProjetCheckboxChange(event: any): void {
   getTousLesProjets(): void {
     this.projetService.tousLesProjets(this.currentPage).subscribe(
       (response: any) => {
-        console.log(response);
       
-        // Assuming your array is nested under a key 'content'
         this.projets = response.content;
-        console.log(this.projets);
         
         this.totalPages = response.totalPages;
       },

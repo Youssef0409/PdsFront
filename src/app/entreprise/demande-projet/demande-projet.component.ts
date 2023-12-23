@@ -42,7 +42,6 @@ export class DemandeProjetComponent implements OnInit{
   getDemandesEnCours() {
     this.demandeService.findAllEnCours().subscribe(
       (data: DemandeRealisation[]) => {
-        console.log(data);
         this.demandes = data;
       },
       (error) => {
@@ -78,9 +77,7 @@ export class DemandeProjetComponent implements OnInit{
   validerDemande(id: number) {
     this.demandeService.validerDemandeRealisation(id).subscribe(
       (data: DemandeRealisation) => {
-        // Handle success, e.g., update the UI or perform additional actions
-        console.log('Demande validée:', data);
-        this.getDemandesEnCours(); // Refresh the data after validation
+        this.getDemandesEnCours(); 
       },
       (error) => {
         console.error('Error validating demande:', error);
@@ -91,9 +88,7 @@ export class DemandeProjetComponent implements OnInit{
   annulerDemande(id: number) {
     this.demandeService.annulerDemandeRealisation(id).subscribe(
       (data: DemandeRealisation) => {
-        // Handle success, e.g., update the UI or perform additional actions
-        console.log('Demande annulée:', data);
-        this.getDemandesEnCours(); // Refresh the data after cancellation
+        this.getDemandesEnCours(); 
       },
       (error) => {
         console.error('Error cancelling demande:', error);

@@ -28,7 +28,6 @@ export class JobDetailsComponent implements OnInit{
   this.route.paramMap.subscribe(params => {
     this.id = +params.get('id')!;
     this.type = params.get('type')!;
-    console.log(this.id, this.type);
 
     const userData = localStorage.getItem('user');
     if (userData) {
@@ -49,7 +48,6 @@ export class JobDetailsComponent implements OnInit{
 fetchOffreDetails(id: number): void {
   this.servicoffre.getOffreById(id).subscribe(
     (offreDetails) => {
-      console.log('Offre Details:', offreDetails);
       this.offreDetails = offreDetails;
       // Display your offre details in the template
     },
@@ -62,7 +60,6 @@ fetchOffreDetails(id: number): void {
 fetchProjetDetails(id: number): void {
   this.serviceprojet.getProjetById(id).subscribe(
     (projetDetails) => {
-      console.log('Projet Details:', projetDetails);
       this.projetDetails = projetDetails;
       // Display your projet details in the template
     },
@@ -103,7 +100,6 @@ fetchProjetDetails(id: number): void {
       .subscribe(
         (createdDemandeRecrutement) => {
           // Handle success, e.g., display a success message
-          console.log('Demande Recrutement created:', createdDemandeRecrutement);
           this.showSuccessMessage();
         },
         (error) => {
@@ -119,7 +115,6 @@ fetchProjetDetails(id: number): void {
       .subscribe(
         (createdDemandeRealisation) => {
           // Handle success, e.g., display a success message
-          console.log('Demande Recrutement created:', createdDemandeRealisation);
           this.showSuccessMessage();
         },
         (error) => {

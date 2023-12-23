@@ -71,7 +71,6 @@ export class AddEditProjetComponent implements OnInit{
 
 
 
-      console.log(this.id_user);
     }
   }
 
@@ -80,7 +79,6 @@ export class AddEditProjetComponent implements OnInit{
   getReservFormData() {
     if (this.Reactiveform.valid) {
       const editid = this.Reactiveform.getRawValue().id;
-      console.log(editid);
       if (editid != null && this.editmode) {
         this.addProjet();
       } else {
@@ -122,7 +120,6 @@ export class AddEditProjetComponent implements OnInit{
       // Call the service method to add the offer
       this.projetService.addProjet(offerData, this.imageFiles)
         .subscribe(response => {
-          console.log('Projet added successfully:', response);
           if (response){
           this.showSuccessMessage();
           // Handle success, if needed

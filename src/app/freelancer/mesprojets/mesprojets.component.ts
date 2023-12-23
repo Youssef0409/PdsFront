@@ -44,17 +44,14 @@ export class MesprojetsComponent implements OnInit {
   }
   avancement(){}
   AllProjets(): void {
-    console.log('Avant la requête');
     this.service.findProjectsRealizedByFreelancerId(this.id_user).subscribe(
       data => {
-        console.log('Projets chargés avec succès :', data);
         this.projets = data;
       },
       error => {
         console.error('Erreur lors du chargement des projets :', error);
       }
     );
-    console.log('Après la requête');
   }
 
   add(): void {}

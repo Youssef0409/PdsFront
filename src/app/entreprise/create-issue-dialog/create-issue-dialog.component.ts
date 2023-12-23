@@ -46,7 +46,6 @@ export class CreateIssueDialogComponent implements OnInit{
       this.projetService.findAllValider().subscribe(
         (projets: any[]) => {
 
-          console.log('Projets validés :', projets);
 
 
           if (projets.length > 0) {
@@ -64,7 +63,6 @@ export class CreateIssueDialogComponent implements OnInit{
             });
 
 
-            console.log('Utilisateurs assignés :', this.assignedUsers);
           } else {
             console.warn('Aucun projet validé trouvé.');
           }
@@ -93,7 +91,6 @@ export class CreateIssueDialogComponent implements OnInit{
 
       this.ticketService.createTicket(newTicket).subscribe(
         createdTicket => {
-          console.log('Ticket créé avec succès :', createdTicket);
           const snackBarRef: MatSnackBarRef<any> = this.snackBar.open('Ticket créé avec succès', 'OK', {
             duration: 3000,
           });

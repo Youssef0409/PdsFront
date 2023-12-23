@@ -62,7 +62,6 @@ currentPage = 1;
     this.ticketService.getTicketsByUserId(this.id_user).subscribe(
       (tickets) => {
         this.tickets = tickets;
-        console.log('Tickets loaded successfully:', this.tickets);
 
         this.todoTickets = this.getTicketsByStatus(TicketStatus.TO_DO);
         this.inProgressTickets = this.getTicketsByStatus(TicketStatus.IN_PROGRESS);
@@ -77,7 +76,6 @@ currentPage = 1;
   }
 
 getTicketsByStatus(status: TicketStatus): Ticket[] {
-  console.log('Requested status:', status);
 
   const filteredTickets = this.tickets.filter((ticket) => {
     if (typeof ticket.status === 'string') {
@@ -87,7 +85,6 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
     return false;
   });
 
-  console.log('Filtered tickets:', filteredTickets);
 
   return filteredTickets;
 }
@@ -117,14 +114,12 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The ticket details dialog was closed');
     });
   }
 
   deleteTicket(ticketId: number) {
     this.ticketService.deleteTicket(ticketId).subscribe(
       () => {
-        console.log(`Ticket with ID ${ticketId} deleted successfully`);
         this.loadTickets();
       },
       (error) => {

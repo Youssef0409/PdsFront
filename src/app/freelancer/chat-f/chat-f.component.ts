@@ -111,7 +111,6 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
         .subscribe({
           next: (messages: Message[]) => {
             this.chatMessagesSubject.next(messages);
-            console.log('Received messages:', messages);
   
      
             this.showLoader = true;
@@ -148,9 +147,7 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
         dateSent: new Date(),
       };
 
-      console.log('Recipient ID:', message.recipient.id);
-      console.log('Content:', message.content);
-
+  
  
       this.webSocketService.sendMessage(message);
 
@@ -175,7 +172,7 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
         .getInitialChatMessages(loggedInUserId, selectedUserId)
         .subscribe((messages) => {
           this.chatMessagesSubject.next(messages);
-          console.log('Received initial messages:', messages);
+         
 
           this.scrollToBottom();
         });
@@ -197,19 +194,14 @@ export class ChatFComponent implements OnInit, OnDestroy ,AfterViewInit {
   
       forkJoin([ongoingRequests$, validatedRequests$]).subscribe(
         ([ongoingUsers, validatedUsers]) => {
-          console.log('Ongoing Users:', ongoingUsers);
-          console.log('Validated Users:', validatedUsers);
-  
+      
           const allUsers = Array.from(new Set([...ongoingUsers, ...validatedUsers]));
   
-          console.log('All Users (Including Duplicates):', allUsers);
   
           const uniqueUsers = Array.from(new Map(allUsers.map(user => [user.id, user]))).map(([_, user]) => user);
   
-          console.log('Unique Users:', uniqueUsers);
   
           this.users = uniqueUsers;
-          console.log('Unique Users:', uniqueUsers);
         },
         (error) => {
           console.error('Error loading users:', error);

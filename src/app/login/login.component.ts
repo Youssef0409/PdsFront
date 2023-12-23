@@ -99,10 +99,8 @@ export class LoginComponent implements OnInit{
             // Extract the 'sub' property
              this.email = userInfoObject.sub;
           
-            console.log(this.email);
           } else {
             // Item doesn't exist
-            console.log('user_info not found in local storage');
           }
           this.authService.getUserByEmail(this.email).subscribe(
             (user: User) => {
@@ -120,7 +118,6 @@ export class LoginComponent implements OnInit{
               
              
             // Use the user data received from the server
-              console.log(user);
             },
             (error) => {
               // Handle error
@@ -153,8 +150,7 @@ export class LoginComponent implements OnInit{
           // Handle successful registration response
           const accessToken = response.access_token;
           const refreshToken = response.refresh_token;
-          console.log('Access Token:', accessToken);
-          console.log('Refresh Token:', refreshToken);
+    
 
           // Store the tokens in local storage
           localStorage.setItem('access_token', accessToken);
@@ -162,7 +158,7 @@ export class LoginComponent implements OnInit{
 
           // Decode the access token to extract user information
           const decodedToken = this.authService.decodeToken(accessToken);
-          console.log('Decoded Token:', decodedToken);
+       
 
           // Store the decoded token in local storage
           localStorage.setItem('user_info', JSON.stringify(decodedToken));

@@ -54,7 +54,6 @@ export class SuiviOffreComponent implements OnInit {
     this.ticketService.getTicketsByUserId(this.id_user).subscribe(
       (tickets) => {
         this.tickets = tickets;
-        console.log('Tickets loaded successfully:', this.tickets);
 
         this.todoTickets = this.getTicketsByStatus(TicketStatus.TO_DO);
         this.inProgressTickets = this.getTicketsByStatus(TicketStatus.IN_PROGRESS);
@@ -69,7 +68,6 @@ export class SuiviOffreComponent implements OnInit {
   }
 
 getTicketsByStatus(status: TicketStatus): Ticket[] {
-  console.log('Requested status:', status);
 
   const filteredTickets = this.tickets.filter((ticket) => {
     if (typeof ticket.status === 'string') {
@@ -78,7 +76,6 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
     return false;
   });
 
-  console.log('Filtered tickets:', filteredTickets);
 
   return filteredTickets;
 }
@@ -89,27 +86,22 @@ onDragStart(event: any, ticket: Ticket) {
 
 onDragOver(event: any) {
   event.preventDefault();
-  console.log('onDragOver called');
 }
 
 onDragEnter(event: any) {
   event.preventDefault();
-  console.log('onDragEnter called');
 }
 
 onDrop(event: any, status: string) {
   event.preventDefault();
   const ticketId: number = +event.dataTransfer.getData('text/plain');
-  console.log('onDrop called with ticketId:', ticketId, 'and status:', status);
 
   const statusEnum: TicketStatus = TicketStatus[status as keyof typeof TicketStatus];
 
   if (statusEnum !== undefined) {
-    console.log('Valid status:', statusEnum);
     this.ticketService.updateTicketWorkflowStatus(ticketId, statusEnum).subscribe(
       (updatedTicket) => {
         this.loadTickets();
-        console.log('Ticket status updated successfully:', updatedTicket);
       },
       (error) => {
         console.error('Erreur lors de la mise à jour de l\'état du ticket:', error);

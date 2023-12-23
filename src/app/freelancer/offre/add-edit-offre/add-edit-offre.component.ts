@@ -72,14 +72,12 @@ export class AddEditOffreComponent implements OnInit{
 
 
 
-      console.log(this.id_user);
     }
   }
 
   getReservFormData() {
     if (this.Reactiveform.valid) {
       const editid = this.Reactiveform.getRawValue().id;
-      console.log(editid);
       if (editid != null && this.editmode) {
         this.addOffre();
       } else {
@@ -121,7 +119,6 @@ export class AddEditOffreComponent implements OnInit{
       // Call the service method to add the offer
       this.offreService.addOffer(offerData, this.imageFiles)
         .subscribe(response => {
-          console.log('Offer added successfully:', response);
           if (response){
           this.showSuccessMessage();
           // Handle success, if needed

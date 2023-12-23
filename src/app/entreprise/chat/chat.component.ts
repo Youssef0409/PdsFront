@@ -119,7 +119,6 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
         .subscribe({
           next: (messages: Message[]) => {
             this.chatMessagesSubject.next(messages);
-            console.log('Received messages:', messages);
   
      
             this.showLoader = true;
@@ -156,8 +155,7 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
         dateSent: new Date(),
       };
 
-      console.log('Recipient ID:', message.recipient.id);
-      console.log('Content:', message.content);
+  
 
  
       this.webSocketService.sendMessage(message);
@@ -183,7 +181,6 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
         .getInitialChatMessages(loggedInUserId, selectedUserId)
         .subscribe((messages) => {
           this.chatMessagesSubject.next(messages);
-          console.log('Received initial messages:', messages);
 
           this.scrollToBottom();
         });
@@ -204,12 +201,10 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
           ];
   
   
-          console.log('All Users:', allUsers);
   
          
           const uniqueUsers = Array.from(new Set(allUsers.map(user => user?.id)))
             .map(id => allUsers.find(user => user?.id === id) as User);
-            console.log('Unique Users:', uniqueUsers);
           this.users = uniqueUsers;
       
 

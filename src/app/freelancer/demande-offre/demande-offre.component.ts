@@ -42,7 +42,6 @@ export class DemandeOffreComponent implements OnInit {
   getDemandesEnCours() {
     this.demandeRecrutementService.findAllEnCours().subscribe(
       (data: DemandeRecrutement[]) => {
-        console.log(data);
         this.demandes = data;
       },
       (error) => {
@@ -79,7 +78,6 @@ export class DemandeOffreComponent implements OnInit {
     this.demandeRecrutementService.validerDemandeRecrutement(id).subscribe(
       (data: DemandeRecrutement) => {
         // Handle success, e.g., update the UI or perform additional actions
-        console.log('Demande validée:', data);
         this.getDemandesEnCours(); // Refresh the data after validation
       },
       (error) => {
@@ -92,7 +90,6 @@ export class DemandeOffreComponent implements OnInit {
     this.demandeRecrutementService.annulerDemandeRecrutement(id).subscribe(
       (data: DemandeRecrutement) => {
         // Handle success, e.g., update the UI or perform additional actions
-        console.log('Demande annulée:', data);
         this.getDemandesEnCours(); // Refresh the data after cancellation
       },
       (error) => {
