@@ -39,7 +39,7 @@
         <div class="row pt-1">
           <!-- Todo Column -->
           <div class="col-md-4">
-            <h3><i class="fas fa-tasks"></i> Todo</h3>
+            <h3><i class="fas fa-tasks"></i> Todo ({{ todoTickets.length }})</h3>
             
             <div *ngFor="let ticket of todoTickets" (click)="openTicketDetails(ticket)" >
             
@@ -80,7 +80,7 @@
       
           <!-- Progress Column -->
           <div class="col-md-4">
-            <h3><i class="fas fa-spinner"></i> Progress</h3>
+            <h3><i class="fas fa-spinner"></i> InProgress ({{ inProgressTickets.length }})</h3>
             <div *ngFor="let ticket of inProgressTickets" (click)="openTicketDetails(ticket)" >
             
               <div class="card card-bg">
@@ -117,7 +117,7 @@
       
           <!-- Done Column -->
           <div class="col-md-4">
-            <h3><i class="fas fa-check-circle"></i> Done</h3>
+            <h3><i class="fas fa-check-circle"></i> Done ({{ doneTickets.length }})</h3>
             
             <div *ngFor="let ticket of doneTickets" (click)="openTicketDetails(ticket)" >
           
