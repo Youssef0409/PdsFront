@@ -30,35 +30,37 @@ export class CreateIssueDialogComponent implements OnInit{
   selectedAssignee: any = null;
   statuses = Object.values(TicketStatus);
   assignedUsers: any[] = [];
+  currentDate: string = '';
+
   constructor(public dialogRef: MatDialogRef<CreateIssueDialogComponent> , private ticketService: TicketService ,private projetService  :DemandeProjetService , private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     const userData = localStorage.getItem('user');
     if (userData) {
       const user = JSON.parse(userData);
-      this.id_user = user.id;  
-  
+      this.id_user = user.id;
+
       this.projetService.findAllValider().subscribe(
         (projets: any[]) => {
-   
+
           console.log('Projets validés :', projets);
-  
-      
+
+
           if (projets.length > 0) {
-     
+
             this.assignedUsers = [];
-            
+
             projets.forEach(projet => {
               const userId = projet.freelancer.id;
               const userName = `${projet.freelancer.firstname} ${projet.freelancer.lastname}`;
-  
-            
+
+
               if (!this.assignedUsers.some(user => user.id === userId)) {
                 this.assignedUsers.push({ id: userId, name: userName });
               }
             });
-  
-         
+
+
             console.log('Utilisateurs assignés :', this.assignedUsers);
           } else {
             console.warn('Aucun projet validé trouvé.');
@@ -66,13 +68,15 @@ export class CreateIssueDialogComponent implements OnInit{
         },
         error => {
           console.error('Erreur lors de la récupération des projets validés :', error);
-        
+
         }
       );
     }
+    this.currentDate = new Date().toISOString();
+
   }
-  
-              
+
+
   onCreate(): void {
     if (this.assignedUsers.length > 0) {
       const newTicket = {
@@ -80,6 +84,7 @@ export class CreateIssueDialogComponent implements OnInit{
         status: TicketStatus[this.selectedStatus],
         createdBy: { id: this.id_user },
         assignedTo: { id: this.assignedUsers[0].id },
+        lastUpdated: this.currentDate,
       };
 
       this.ticketService.createTicket(newTicket).subscribe(
@@ -89,7 +94,6 @@ export class CreateIssueDialogComponent implements OnInit{
             duration: 3000,
           });
 
-          // Attendre que le message soit fermé avant de recharger la page
           snackBarRef.afterDismissed().subscribe(() => {
             this.dialogRef.close('create');
             window.location.reload();
@@ -103,8 +107,8 @@ export class CreateIssueDialogComponent implements OnInit{
       console.warn('Aucun utilisateur assigné trouvé.');
     }
   }
-  
-  
+
+
   onCancel(): void {
     this.dialogRef.close();
   }
