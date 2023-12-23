@@ -4,10 +4,11 @@ import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { DemandeProjetService } from 'src/app/services/demande-projet.service';
 import { TicketService } from 'src/app/services/ticket.service';
 export enum TicketStatus {
-  TO_DO,
-  IN_PROGRESS,
-  DONE,
+  TO_DO = 'TO_DO',
+  IN_PROGRESS = 'IN_PROGRESS',
+  DONE = 'DONE',
 }
+
 
 export interface Ticket {
   id: number;
