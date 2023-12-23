@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TicketService } from 'src/app/services/ticket.service';
 import { CreateIssueDialogComponent } from '../create-issue-dialog/create-issue-dialog.component';
+import { TicketDetailsComponent } from 'src/app/freelancer/ticket-details/ticket-details.component';
 export enum TicketStatus {
   TO_DO,
   IN_PROGRESS,
@@ -38,7 +39,7 @@ currentPage = 1;
   todoTickets: Ticket[] = [];
   inProgressTickets: Ticket[] = [];
   doneTickets: Ticket[] = [];
-  constructor(private ticketService: TicketService , public dialog: MatDialog) {}
+  constructor(private ticketService: TicketService , public dialog: MatDialog , public dialogg: MatDialog ) {}
 
   ngOnInit(): void {
     const userData = localStorage.getItem('user');
@@ -80,8 +81,8 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
 
   const filteredTickets = this.tickets.filter((ticket) => {
     if (typeof ticket.status === 'string') {
-      // Assuming ticket.status is a string
-      return ticket.status === TicketStatus[status]; // Use enum name to compare
+     
+      return ticket.status === TicketStatus[status]; 
     }
     return false;
   });
@@ -105,4 +106,18 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
     this.updatePagination();
   }
   
+
+
+  openTicketDetails(ticket: Ticket): void {
+    const dialogRef = this.dialogg.open(TicketDetailsComponent, {
+      width: '700px',
+      data: ticket,
+      panelClass: 'custom-dialog-class' 
+  
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The ticket details dialog was closed');
+    });
+  }
 }
