@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-lQrV5Cjt3Ij0ZCPqouHqQkLjj8Kl+QaR5xpxCCiARVHTULb1N/59EXW7POMQ+6a" crossorigin="anonymous">
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 
 
 <mat-drawer-container>
@@ -18,7 +19,6 @@
  <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header> 
   <div class="container-fluid page">
 
-    <button class="btn btn-primary ms-auto" (click)="openCreateIssueDialog()">Create</button>
     <div class="container-fluid pt-2">
         <div class="row mt-3">
           <div class="col-12">
@@ -34,7 +34,11 @@
           <!-- Todo Column -->
           <div class="col-md-4">
             <h3><i class="fas fa-tasks"></i> Todo</h3>
+            
             <div *ngFor="let ticket of todoTickets">
+              <div class="ms-auto">
+                <i class="fas fa-plus-circle" style="font-size: 24px; color: #007BFF; cursor: pointer;" (click)="openCreateIssueDialog()"></i>
+              </div>
               <div class="card card-bg">
                 <div class="card-header border-0 py-1">
                   {{ ticket.status }}
@@ -72,6 +76,9 @@
           <div class="col-md-4">
             <h3><i class="fas fa-spinner"></i> Progress</h3>
             <div *ngFor="let ticket of inProgressTickets">
+              <div class="ms-auto">
+                <i class="fas fa-plus-circle" style="font-size: 24px; color: #007BFF; cursor: pointer;" (click)="openCreateIssueDialog()"></i>
+              </div>
               <div class="card card-bg">
                 <div class="card-header border-0 py-1">
                   {{ ticket.status }}
@@ -93,7 +100,9 @@
                       <i class="far fa-clock"></i>
                       <span class="text-muted space-font date-style">{{ ticket.lastUpdated | date: 'medium' }}</span>
                     </div>
+                    
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -102,7 +111,11 @@
           <!-- Done Column -->
           <div class="col-md-4">
             <h3><i class="fas fa-check-circle"></i> Done</h3>
+            
             <div *ngFor="let ticket of doneTickets">
+              <div class="ms-auto">
+                <i class="fas fa-plus-circle" style="font-size: 24px; color: #007BFF; cursor: pointer;" (click)="openCreateIssueDialog()"></i>
+              </div>
               <div class="card card-bg">
                 <div class="card-header border-0 py-1">
                   {{ ticket.status }}
