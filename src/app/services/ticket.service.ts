@@ -27,5 +27,8 @@ export class TicketService {
     const url = `${this.apiUrl}/create`;
     return this.http.post<Ticket>(url, ticket);
   }
-
+  deleteTicket(ticketId: number): Observable<void> {
+    const url = `${this.apiUrl}/${ticketId}`;
+    return this.http.delete<void>(url);
+  }
 }

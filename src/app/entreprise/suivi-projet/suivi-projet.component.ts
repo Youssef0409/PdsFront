@@ -120,4 +120,16 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
       console.log('The ticket details dialog was closed');
     });
   }
+
+  deleteTicket(ticketId: number) {
+    this.ticketService.deleteTicket(ticketId).subscribe(
+      () => {
+        console.log(`Ticket with ID ${ticketId} deleted successfully`);
+        this.loadTickets();
+      },
+      (error) => {
+        console.error('Error deleting ticket:', error);
+      }
+    );
+  }
 }

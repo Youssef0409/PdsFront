@@ -44,11 +44,15 @@
             <div *ngFor="let ticket of todoTickets" (click)="openTicketDetails(ticket)" >
             
               <div class="card card-bg">
+                
                 <div class="card-header border-0 py-1">
                   <!--   {{ ticket.status }}-->
+                  
                   <i class="fas fa-info-circle ml-2" data-toggle="tooltip" data-placement="top" title="Additional Information"></i>
                 </div>
+                
                 <div class="card-body ticket-bg border">
+                 
                   <div class="card-Body-Hover m-1 rounded-1 task">
                     <div class="my-1 fw-bold">  <i class="fas fa-file-alt"></i> {{ ticket.summary }}</div>
                     <div class="row">
@@ -68,6 +72,9 @@
 
                     </div>
                     
+                  </div>
+                  <div class="ms-auto delete-icon" (click)="deleteTicket(ticket.id)">
+                    <i class="fas fa-trash" style="font-size: 15px; color:  #007BFF; cursor: pointer;"></i>
                   </div>
                 </div>
 
@@ -106,7 +113,9 @@
                     </div>
                     
                   </div>
-                  
+                  <div class="ms-auto delete-icon" (click)="deleteTicket(ticket.id)">
+                    <i class="fas fa-trash" style="font-size: 15px; color:  #007BFF; cursor: pointer;"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,7 +152,11 @@
                       <span class="text-muted space-font date-style">{{ ticket.lastUpdated | date: 'medium' }}</span>
                     </div>
                   </div>
+                  <div class="ms-auto delete-icon" (click)="deleteTicket(ticket.id)">
+                    <i class="fas fa-trash" style="font-size: 15px; color:  #007BFF; cursor: pointer;"></i>
+                  </div>
                 </div>
+            
               </div>
             </div>
             <div class="ms-auto">
