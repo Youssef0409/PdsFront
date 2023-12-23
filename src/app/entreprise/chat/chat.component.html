@@ -418,11 +418,12 @@
                         <div class="chat-search pl-3 pr-3">
                           <div class="input-group">
                             <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Write a message"
-                        [(ngModel)]="newMessage"
-                      />
+                            type="text"
+                            class="form-control"
+                            placeholder="Write a message"
+                            [(ngModel)]="newMessage"
+                            (keydown.enter)="sendMessage()"
+                          />
                             <div class="input-group-append prepend-white">
                               <span class="input-group-text pl-2 pr-2">
                                 <i
