@@ -48,6 +48,10 @@ import { FreelancerHomeComponent } from './freelancer/freelancer-home/freelancer
 import { ChatComponent } from './entreprise/chat/chat.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
+import { SuiviOffreComponent } from './freelancer/suivi-offre/suivi-offre.component';
+import { SuiviProjetComponent } from './entreprise/suivi-projet/suivi-projet.component';
+import { CreateIssueDialogComponent } from './entreprise/create-issue-dialog/create-issue-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +74,10 @@ import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
     Navbar1Component,
     FreelancerHomeComponent,
     ChatComponent,
-    ChatFComponent
+    ChatFComponent,
+    SuiviOffreComponent,
+    SuiviProjetComponent,
+    CreateIssueDialogComponent,
   ],
   imports: [
     NgxChartsModule,
@@ -83,6 +90,7 @@ import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
     MatSidenavModule,
     MatToolbarModule,
     MatInputModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatMenuModule,
     MatIconModule,
@@ -98,6 +106,7 @@ import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
     MatNativeDateModule,
     MatSelectModule,
     MatPaginatorModule,
+    
     NgbModalModule, TimepickerModule.forRoot(),
 
     

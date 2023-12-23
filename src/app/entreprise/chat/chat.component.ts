@@ -208,7 +208,7 @@ export class ChatComponent implements OnInit, OnDestroy ,AfterViewInit {
   
          
           const uniqueUsers = Array.from(new Set(allUsers.map(user => user?.id)))
-            .map(id => allUsers.find(user => user?.id === id) as User); // Use "as User" to assert type
+            .map(id => allUsers.find(user => user?.id === id) as User);
             console.log('Unique Users:', uniqueUsers);
           this.users = uniqueUsers;
       
