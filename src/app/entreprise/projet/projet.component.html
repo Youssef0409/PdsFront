@@ -29,9 +29,12 @@
                     <nav class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s"
                     style="visibility: visible; animation-name: fadeInDown;">
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <div class="col-lg-12 justify-content-end text-right"> <!-- Utilisation de 'justify-content-end' pour aligner à droite -->
-                            <a class="btn btn-sm mt-20" (click)="add()">Ajouter Projet</a> <!-- Utilisation de 'btn-sm' pour réduire la taille du bouton -->
+                        <div class="col-lg-12 justify-content-end text-right">
+                            <div class="ms-auto float-right">
+                                <i class="fas fa-plus-circle" style="font-size: 38px; color: #007BFF; cursor: pointer;" (click)="add()"></i>
+                            </div>
                         </div>
+                        
                     </div>
                 </nav>
                 
