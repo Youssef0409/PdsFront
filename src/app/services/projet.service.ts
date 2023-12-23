@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Projet } from '../models/projet';
 import { Offre } from '../models/offre';
 import { OffreService } from './offre.service';
+import { AuthService } from './auth.service';
+import { DemandeRealisation } from '../models/demande-realisation';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +13,12 @@ import { OffreService } from './offre.service';
 export class ProjetService {
   private apiRoot = 'http://localhost:8080/api/v1';
 
-  constructor(private http: HttpClient) {}
-
-
+  constructor(private http: HttpClient, private authService: AuthService) {}
+  findProjectsRealizedByFreelancerId(idFreelancer: number): Observable<Projet[]> {
+    const url = `${this.apiRoot}/demandeF/projets-realises/${idFreelancer}`;
+    return this.http.get<Projet[]>(url);
+  }
   
-
   updateUnProjet(projet: Projet, id: number): Observable<Projet> {
     const formData = new FormData();
     formData.append('projet', JSON.stringify(projet));
