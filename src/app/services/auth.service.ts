@@ -25,7 +25,14 @@ export class AuthService {
     return this.http.post<any>('http://localhost:8080/api/v1/auth/register', registerRequest);
   }
 
- 
+  getUserIdFromToken(): number | null {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.id;
+    }
+    return null;
+  }
 
   logout() {
     const url = 'http://localhost:8080/api/v1/auth/logout';
