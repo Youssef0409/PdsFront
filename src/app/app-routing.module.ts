@@ -16,6 +16,8 @@ import { ChatComponent } from './entreprise/chat/chat.component';
 import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
 import { SuiviOffreComponent } from './freelancer/suivi-offre/suivi-offre.component';
 import { SuiviProjetComponent } from './entreprise/suivi-projet/suivi-projet.component';
+import { MesprojetsComponent } from './freelancer/mesprojets/mesprojets.component';
+
 const routes: Routes = [
   { path: 'freelancer/home', component: FreelancerHomeComponent},
   { path: 'entreprise/home', component: EntrepriseComponent },
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'freelancer/chat', component: ChatFComponent },
   { path: 'freelancer/suiviOffre', component: SuiviOffreComponent },
   { path: 'entreprise/suiviProjet', component: SuiviProjetComponent },
+  { path: 'freelancer/mesprojets', component: MesprojetsComponent },
+
   // Add more routes as needed
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
   { path: '**', redirectTo: '/home' }, // Wildcard route for 404
