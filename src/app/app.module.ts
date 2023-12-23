@@ -51,7 +51,9 @@ import { ChatFComponent } from './freelancer/chat-f/chat-f.component';
 import { SuiviOffreComponent } from './freelancer/suivi-offre/suivi-offre.component';
 import { SuiviProjetComponent } from './entreprise/suivi-projet/suivi-projet.component';
 import { CreateIssueDialogComponent } from './entreprise/create-issue-dialog/create-issue-dialog.component';
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MesprojetsComponent } from './freelancer/mesprojets/mesprojets.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +80,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     SuiviOffreComponent,
     SuiviProjetComponent,
     CreateIssueDialogComponent,
+    MesprojetsComponent
   ],
   imports: [
     NgxChartsModule,
@@ -90,10 +93,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSidenavModule,
     MatToolbarModule,
     MatInputModule,
-    MatCheckboxModule,
     MatDatepickerModule,
     MatMenuModule,
     MatIconModule,
+    MatCheckboxModule,
     MatDividerModule,
     MatListModule,
     HttpClientXsrfModule.withOptions({
@@ -106,10 +109,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatNativeDateModule,
     MatSelectModule,
     MatPaginatorModule,
-    
     NgbModalModule, TimepickerModule.forRoot(),
 
-    
+
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
@@ -120,14 +122,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       }
     })
   ],
-  
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
     },
-    
+
     StompService,
     {
       provide: StompConfig,
