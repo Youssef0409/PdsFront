@@ -127,7 +127,16 @@
     
     
 
-
+    <div class="container-fluid pt-2 todo-section">
+      
+      <mat-paginator
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage - 1"
+        [pageSizeOptions]="[3, 8, 20]"
+        [length]="tickets.length"
+        (page)="onPageChange($event.pageIndex + 1)"
+      ></mat-paginator>
+    </div>
 
       
   </div>

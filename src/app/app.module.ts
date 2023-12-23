@@ -98,6 +98,7 @@ import { MesprojetsComponent } from './freelancer/mesprojets/mesprojets.componen
     MatIconModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatPaginatorModule,
     MatListModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',

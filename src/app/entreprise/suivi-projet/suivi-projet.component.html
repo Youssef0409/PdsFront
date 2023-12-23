@@ -148,72 +148,20 @@
               </div>
             </div>
           </div>
+          
         </div>
       </div>
+      <div class="container-fluid pt-2 todo-section">
       
-
-
-    
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header d-flex ">
-                    <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Issue</h1>
-                    </div>
-                    <div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                   
-                   
-                        <div class="row">
-                            <div class="col-4">
-                                <label for="">Status <span><i class="fa fa-circle-info"></i></span></label>
-                                <select name="" class="mb-1 form-select">
-                                    <option></option> 
-                                </select>
-                            </div>
-                       
-                            <div class="col-12 mb-3">
-                                <label for="">Summary</label>
-                                <textarea name="description"  cols="30" rows="5" class="form-control"></textarea>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label for="">Assignee</label>
-                                <select name="assignedTo"  class="mb-1 form-select">
-                                    <option ></option> 
-                                </select>
-                                <span><a href="" class="text-decoration-none fw-semibold">Assign to me</a></span>
-                            </div>
-    
-                           
-                  
-    
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-    
-                    <div>
-                        <input type="checkbox" name="" id=""><span>
-                            Create another issue</span>
-                    </div>
-                    <div>
-    
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Create</button>
-                    </div>
-    
-                </div>
-            </div>
-    
-    
-        </div>
-    </div>
-    
+        <mat-paginator
+          [pageSize]="pageSize"
+          [pageIndex]="currentPage - 1"
+          [pageSizeOptions]="[3, 8, 20]"
+          [length]="tickets.length"
+          (page)="onPageChange($event.pageIndex + 1)"
+        ></mat-paginator>
+      </div>
+      
 
   </div>  
 </mat-drawer-content>

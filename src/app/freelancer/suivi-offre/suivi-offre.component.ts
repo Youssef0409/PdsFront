@@ -29,7 +29,8 @@ export class SuiviOffreComponent implements OnInit {
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
-
+  pageSize = 3; 
+  currentPage = 1; 
   tickets: Ticket[] = [];
   TicketStatus = TicketStatus;
   todoTickets: Ticket[] = [];
@@ -51,12 +52,12 @@ export class SuiviOffreComponent implements OnInit {
       (tickets) => {
         this.tickets = tickets;
         console.log('Tickets loaded successfully:', this.tickets);
-        
-        // Filtrer les tickets pour chaque état
+
         this.todoTickets = this.getTicketsByStatus(TicketStatus.TO_DO);
         this.inProgressTickets = this.getTicketsByStatus(TicketStatus.IN_PROGRESS);
         this.doneTickets = this.getTicketsByStatus(TicketStatus.DONE);
-        
+
+        this.updatePagination();
       },
       (error) => {
         console.error('Erreur lors du chargement des tickets:', error);
@@ -69,7 +70,6 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
 
   const filteredTickets = this.tickets.filter((ticket) => {
     if (typeof ticket.status === 'string') {
-      // Assuming ticket.status is a string
       return ticket.status === TicketStatus[status]; // Use enum name to compare
     }
     return false;
@@ -99,7 +99,6 @@ onDrop(event: any, status: string) {
   const ticketId: number = +event.dataTransfer.getData('text/plain');
   console.log('onDrop called with ticketId:', ticketId, 'and status:', status);
 
-  // Ensure the status is a valid member of the TicketStatus enum
   const statusEnum: TicketStatus = TicketStatus[status as keyof typeof TicketStatus];
 
   if (statusEnum !== undefined) {
@@ -116,6 +115,20 @@ onDrop(event: any, status: string) {
   } else {
     console.error('Erreur: status invalide');
   }
+}
+
+updatePagination() {
+  const startIndex = (this.currentPage - 1) * this.pageSize;
+  const endIndex = startIndex + this.pageSize;
+
+  this.todoTickets = this.getTicketsByStatus(TicketStatus.TO_DO).slice(startIndex, endIndex);
+  this.inProgressTickets = this.getTicketsByStatus(TicketStatus.IN_PROGRESS).slice(startIndex, endIndex);
+  this.doneTickets = this.getTicketsByStatus(TicketStatus.DONE).slice(startIndex, endIndex);
+}
+
+onPageChange(page: number) {
+  this.currentPage = page;
+  this.updatePagination();
 }
   
   

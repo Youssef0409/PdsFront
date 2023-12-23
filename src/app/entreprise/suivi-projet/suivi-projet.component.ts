@@ -30,6 +30,8 @@ export class SuiviProjetComponent  implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
+pageSize = 3; 
+currentPage = 1; 
   tickets: Ticket[] = [];
   TicketStatus = TicketStatus;
   todoTickets: Ticket[] = [];
@@ -59,12 +61,12 @@ export class SuiviProjetComponent  implements OnInit {
       (tickets) => {
         this.tickets = tickets;
         console.log('Tickets loaded successfully:', this.tickets);
-        
-        // Filtrer les tickets pour chaque état
+
         this.todoTickets = this.getTicketsByStatus(TicketStatus.TO_DO);
         this.inProgressTickets = this.getTicketsByStatus(TicketStatus.IN_PROGRESS);
         this.doneTickets = this.getTicketsByStatus(TicketStatus.DONE);
-        
+
+        this.updatePagination();
       },
       (error) => {
         console.error('Erreur lors du chargement des tickets:', error);
@@ -88,6 +90,18 @@ getTicketsByStatus(status: TicketStatus): Ticket[] {
   return filteredTickets;
 }
 
+  updatePagination() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
 
+    this.todoTickets = this.getTicketsByStatus(TicketStatus.TO_DO).slice(startIndex, endIndex);
+    this.inProgressTickets = this.getTicketsByStatus(TicketStatus.IN_PROGRESS).slice(startIndex, endIndex);
+    this.doneTickets = this.getTicketsByStatus(TicketStatus.DONE).slice(startIndex, endIndex);
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.updatePagination();
+  }
   
 }
